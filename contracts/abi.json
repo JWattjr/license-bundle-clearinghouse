@@ -1,0 +1,225 @@
+{
+  "ctor": {
+    "params": [],
+    "kwparams": {}
+  },
+  "methods": {
+    "approve_bundle_request": {
+      "params": [
+        [
+          "request_id",
+          "string"
+        ],
+        [
+          "expected_request_digest",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "dict",
+      "payable": false
+    },
+    "cancel_bundle_request": {
+      "params": [
+        [
+          "request_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "dict",
+      "payable": false
+    },
+    "deposit_demo_units": {
+      "params": [
+        [
+          "amount_units",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "int",
+      "payable": false
+    },
+    "expire_bundle_request": {
+      "params": [
+        [
+          "request_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "dict",
+      "payable": false
+    },
+    "get_accounting": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "dict"
+    },
+    "get_balance": {
+      "params": [
+        [
+          "account",
+          "address"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "int"
+    },
+    "get_license": {
+      "params": [
+        [
+          "work_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "dict"
+    },
+    "get_license_version": {
+      "params": [
+        [
+          "work_id",
+          "string"
+        ],
+        [
+          "version",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "dict"
+    },
+    "get_permission": {
+      "params": [
+        [
+          "request_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "dict"
+    },
+    "get_request": {
+      "params": [
+        [
+          "request_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "dict"
+    },
+    "invalidate_stale_request": {
+      "params": [
+        [
+          "request_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "dict",
+      "payable": false
+    },
+    "register_license": {
+      "params": [
+        [
+          "work_id",
+          "string"
+        ],
+        [
+          "work_name",
+          "string"
+        ],
+        [
+          "terms_text",
+          "string"
+        ],
+        [
+          "fee_units",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "dict",
+      "payable": false
+    },
+    "reject_bundle_request": {
+      "params": [
+        [
+          "request_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "dict",
+      "payable": false
+    },
+    "request_bundle": {
+      "params": [
+        [
+          "request_id",
+          "string"
+        ],
+        [
+          "work_ids_json",
+          "string"
+        ],
+        [
+          "requested_use",
+          "string"
+        ],
+        [
+          "consent_deadline_iso",
+          "string"
+        ],
+        [
+          "permission_expiry_iso",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "dict",
+      "payable": false
+    },
+    "update_license_terms": {
+      "params": [
+        [
+          "work_id",
+          "string"
+        ],
+        [
+          "expected_version",
+          "int"
+        ],
+        [
+          "terms_text",
+          "string"
+        ],
+        [
+          "fee_units",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "dict",
+      "payable": false
+    }
+  }
+}
