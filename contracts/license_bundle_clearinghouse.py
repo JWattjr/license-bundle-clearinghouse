@@ -1,4 +1,4 @@
-# { "Depends": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng" }
+# { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 
 """Versioned, consented license bundles for a precisely scoped use."""
 
@@ -7,7 +7,7 @@ import hashlib
 import json
 import re
 
-import genlayer as gl
+from genlayer import *
 
 
 MAX_LICENSES = 32
@@ -56,13 +56,9 @@ def _time_text(value: str, label: str) -> str:
 
 
 def _now() -> datetime:
-    message = getattr(gl, "message", None)
-    value = getattr(message, "datetime", None)
-    if value is None:
-        raw = getattr(message, "raw", {})
-        value = raw.get("datetime", "") if isinstance(raw, dict) else ""
+    raw = getattr(gl, "message_raw", {})
+    value = raw.get("datetime", "") if isinstance(raw, dict) else ""
     return _time(str(value), "block time")
-
 
 def _address_key(value) -> str:
     if isinstance(value, bytes):
@@ -149,24 +145,24 @@ def _decision_vector(value: dict) -> tuple:
     return value["snapshot_digest"], decisions, conflicts
 
 
-class LicenseBundleClearinghouse(gl.contract.Contract):
-    licenses: gl.storage.TreeMap[str, str]
-    license_versions: gl.storage.TreeMap[str, str]
-    license_order: gl.storage.DynArray[str]
-    requests: gl.storage.TreeMap[str, str]
-    request_order: gl.storage.DynArray[str]
-    balances: gl.storage.TreeMap[str, gl.u256]
-    account_order: gl.storage.DynArray[str]
-    minted_units: gl.u256
-    available_units: gl.u256
-    reserved_units: gl.u256
-    fees_paid_units: gl.u256
+class LicenseBundleClearinghouse(gl.Contract):
+    licenses: TreeMap[str, str]
+    license_versions: TreeMap[str, str]
+    license_order: DynArray[str]
+    requests: TreeMap[str, str]
+    request_order: DynArray[str]
+    balances: TreeMap[str, u256]
+    account_order: DynArray[str]
+    minted_units: u256
+    available_units: u256
+    reserved_units: u256
+    fees_paid_units: u256
 
     def __init__(self):
-        self.minted_units = gl.u256(0)
-        self.available_units = gl.u256(0)
-        self.reserved_units = gl.u256(0)
-        self.fees_paid_units = gl.u256(0)
+        self.minted_units = u256(0)
+        self.available_units = u256(0)
+        self.reserved_units = u256(0)
+        self.fees_paid_units = u256(0)
 
     def _sender(self) -> str:
         return _address_key(gl.message.sender_address)
@@ -234,7 +230,7 @@ INPUT_JSON: """ + _canonical(snapshot)
             except Exception:
                 return False
 
-        return gl.vm.run_nondet(leader_fn, validator_fn)
+        return gl.vm.run_nondet_unsafe(leader_fn, validator_fn)
 
     def _compatibility_status(self, assessment: dict) -> str:
         if assessment["conflict_pairs"] or any(row["finding"] == "NOT_PERMITTED" for row in assessment["license_decisions"]):
@@ -255,9 +251,9 @@ INPUT_JSON: """ + _canonical(snapshot)
         if request["status"] != "AWAITING_CONSENT" or int(self.reserved_units) < amount:
             raise gl.vm.UserError("[INVARIANT] pending request reservation is unavailable")
         requester = request["requester"]
-        self.balances[requester] = gl.u256(int(self.balances.get(requester, gl.u256(0))) + amount)
-        self.reserved_units -= gl.u256(amount)
-        self.available_units += gl.u256(amount)
+        self.balances[requester] = u256(int(self.balances.get(requester, u256(0))) + amount)
+        self.reserved_units -= u256(amount)
+        self.available_units += u256(amount)
         request["reserved_units"] = 0
         request["status"] = status
         self.requests[request["request_id"]] = _canonical(request)
@@ -274,10 +270,10 @@ INPUT_JSON: """ + _canonical(snapshot)
         for snapshot in request["licenses"]:
             licensor = snapshot["licensor"]
             fee = int(snapshot["fee_units"])
-            self.balances[licensor] = gl.u256(int(self.balances.get(licensor, gl.u256(0))) + fee)
-        self.reserved_units -= gl.u256(amount)
-        self.available_units += gl.u256(amount)
-        self.fees_paid_units += gl.u256(amount)
+            self.balances[licensor] = u256(int(self.balances.get(licensor, u256(0))) + fee)
+        self.reserved_units -= u256(amount)
+        self.available_units += u256(amount)
+        self.fees_paid_units += u256(amount)
         request["reserved_units"] = 0
         request["status"] = "ISSUED"
         request["issued_at"] = _now().strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -296,19 +292,19 @@ INPUT_JSON: """ + _canonical(snapshot)
                 "permission_expiry": request["permission_expiry"]}
 
     @gl.public.write
-    def deposit_demo_units(self, amount_units: gl.u256) -> int:
+    def deposit_demo_units(self, amount_units: u256) -> int:
         if type(amount_units) is bool or not isinstance(amount_units, int) or not 0 < int(amount_units) <= MAX_FEE:
             raise gl.vm.UserError("[EXPECTED] demo deposit must be positive and bounded")
         sender = self._sender()
         amount = int(amount_units)
         self._ensure_account(sender)
-        self.balances[sender] = gl.u256(int(self.balances.get(sender, gl.u256(0))) + amount)
-        self.minted_units += gl.u256(amount)
-        self.available_units += gl.u256(amount)
+        self.balances[sender] = u256(int(self.balances.get(sender, u256(0))) + amount)
+        self.minted_units += u256(amount)
+        self.available_units += u256(amount)
         return int(self.balances[sender])
 
     @gl.public.write
-    def register_license(self, work_id: str, work_name: str, terms_text: str, fee_units: gl.u256) -> dict:
+    def register_license(self, work_id: str, work_name: str, terms_text: str, fee_units: u256) -> dict:
         if len(self.license_order) >= MAX_LICENSES:
             raise gl.vm.UserError("[LIMIT] registered license capacity reached")
         work_id = _identifier(work_id, "work ID")
@@ -328,7 +324,7 @@ INPUT_JSON: """ + _canonical(snapshot)
 
     @gl.public.write
     def update_license_terms(
-        self, work_id: str, expected_version: gl.u256, terms_text: str, fee_units: gl.u256
+        self, work_id: str, expected_version: u256, terms_text: str, fee_units: u256
     ) -> dict:
         license_row = self._load_license(work_id)
         if license_row["licensor"] != self._sender():
@@ -373,7 +369,7 @@ INPUT_JSON: """ + _canonical(snapshot)
         license_snapshots = [self._load_license(work_id) for work_id in work_ids]
         fee = sum(int(row["fee_units"]) for row in license_snapshots)
         requester = self._sender()
-        if int(self.balances.get(requester, gl.u256(0))) < fee:
+        if int(self.balances.get(requester, u256(0))) < fee:
             raise gl.vm.UserError("[EXPECTED] requester has insufficient available demo units")
         licensors = []
         for row in license_snapshots:
@@ -394,9 +390,9 @@ INPUT_JSON: """ + _canonical(snapshot)
         request_digest = _digest({**core, "compatibility": assessment})
         if compatibility == "COMPATIBLE":
             status = "AWAITING_CONSENT"
-            self.balances[requester] = gl.u256(int(self.balances.get(requester, gl.u256(0))) - fee)
-            self.available_units -= gl.u256(fee)
-            self.reserved_units += gl.u256(fee)
+            self.balances[requester] = u256(int(self.balances.get(requester, u256(0))) - fee)
+            self.available_units -= u256(fee)
+            self.reserved_units += u256(fee)
             reserved = fee
         else:
             status = "DENIED_INCOMPATIBLE" if compatibility == "INCOMPATIBLE" else "DENIED_UNCERTAIN"
@@ -474,7 +470,7 @@ INPUT_JSON: """ + _canonical(snapshot)
         return self._load_license(work_id)
 
     @gl.public.view
-    def get_license_version(self, work_id: str, version: gl.u256) -> dict:
+    def get_license_version(self, work_id: str, version: u256) -> dict:
         work_id = _identifier(work_id, "work ID")
         key = self._license_version_key(work_id, int(version))
         if key not in self.license_versions:
@@ -496,9 +492,9 @@ INPUT_JSON: """ + _canonical(snapshot)
         return permission
 
     @gl.public.view
-    def get_balance(self, account: gl.Address) -> int:
+    def get_balance(self, account: Address) -> int:
         key = _address_key(account)
-        return int(self.balances.get(key, gl.u256(0)))
+        return int(self.balances.get(key, u256(0)))
 
     @gl.public.view
     def get_accounting(self) -> dict:

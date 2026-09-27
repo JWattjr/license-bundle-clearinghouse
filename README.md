@@ -6,7 +6,7 @@ Incompatible or uncertain requests are recorded without reserving funds. A compa
 
 ## Toolchain
 
-The contract pins `py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng`, accepted by the installed GenVM linter. The official First Contract guide still uses a different runner hash as its example; this undeployed project has not verified acceptance on a target network. `requirements.txt` pins the locally installed v0.6 RC test toolchain.
+The contract pins `py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6`, accepted by the installed GenVM linter. The fallback runner finalized a trivial StudioNet deployment and write/read-back probe; this project contract has not yet been deployed. `requirements.txt` pins the locally installed v0.6 RC test toolchain.
 
 ```powershell
 py -3.14 -m venv .venv
@@ -40,3 +40,7 @@ There are no constructor arguments; see [examples/constructor.json](examples/con
 The registry supports 32 works, 32 bundle requests, 64 participant accounts, at most 8 versions per work, and bundles of up to 5 works. Text, fee amounts, IDs, and permission duration are bounded. All fees are fixed by the selected license versions and distributed deterministically from one reserved amount. The accounting invariant is `available demo balances + pending reservations = total demo units minted`.
 
 Demo units are internal ledger entries, not real funds. Registration does not prove copyright ownership or legal authority. Compatibility is a model judgment over licensor-provided text, not legal advice or proof that a license is enforceable. See [mechanism differentiation](docs/MECHANISM_DIFFERENTIATION.md), [test matrix](docs/TEST_MATRIX.md), [security notes](docs/SECURITY_NOTES.md), and the [undeployed submission draft](SUBMISSION_DRAFT.md).
+
+## Why GenLayer
+
+Validators must interpret published license restrictions together with the requested use and the other selected terms; licensor approvals authorize the exact request but do not independently establish cross-license compatibility, which deterministic code cannot infer from natural language.

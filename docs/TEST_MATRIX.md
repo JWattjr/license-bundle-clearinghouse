@@ -14,4 +14,6 @@ Run `python -m pytest` from the repository root. Direct-mode tests mock model re
 | Insufficient balance fails before compatibility judgment | `test_insufficient_balance_fails_before_compatibility_judgment` |
 | Per-work version history stops at its fixed cap | `test_license_version_history_has_a_fixed_cap` |
 
-The recorded direct-mode run passed 10 tests. GenVM lint passed 3 checks, SDK validation reported 15 methods (6 views and 9 writes), and schema extraction succeeded. No deployment was run.
+| Every model-returned judgment field is validated and compared or bound to frozen input | `test_every_returned_judgment_field_is_compared_or_snapshot_bound` |
+
+The recorded direct-mode run passed 11 tests. GenVM lint passed 3 checks, SDK validation reported 15 methods (6 views and 9 writes), and schema extraction succeeded. No deployment was run.

@@ -1,0 +1,17 @@
+# Distinctiveness audit
+
+Scope: contract source review against the other nine portfolio contracts, the named standalone contracts, and relevant local projects. This is a local comparison, not an ecosystem-wide originality claim.
+
+**Disposition: KEEP, with a mechanism-overlap caveat.** It is the only kept project whose terminal effect is an expiring multi-licensor permission, but its review/consent/reservation pipeline resembles three withheld portfolio projects.
+
+| Closest comparator | Its judgment | Participants and actions | Its state changes | Capability or invariant implemented here |
+|---|---|---|---|---|
+| Standalone Material Terms Change Guard | Compares amended terms with a frozen baseline and classifies material categories to derive a protective route. | A deployer freezes amendment, baseline, categories, sources, and deadline; callers review. | Stores a route and terminal amendment status. | This contract assembles licenses for a specific requested use, requires each distinct licensor's exact-digest consent, reserves each fixed fee, then issues an expiring permission and pays licensors. |
+| New Funded Change Order (withheld) | Judges whether proposed obligation edits preserve mandatory baseline requirements. | Agreement parties approve an exact change order; the payer reserves any positive funding delta. | Activates a new agreement baseline version after approval and funding. | Both review natural-language changes and bind consent to a digest. The license contract instead issues a bounded permission over selected works and distributes known fixed fees. |
+| New Partial Settlement Matcher (withheld) | Judges compatibility of settlement conditions for selected obligations. | Case parties approve offers that reserve a dispute budget. | Pays listed payees and discharges covered obligations. | This contract grants a time-bounded use permission; it does not resolve disputed contractual duties. |
+| New Proposal Consolidation Protocol (withheld) | Judges overlap and preservation of obligations across proposals. | Source authors and funders approve merge/migration of pledges. | Creates a consolidated proposal and migrates opted-in pledges. | This contract binds each license version and permission expiry, reserves one request fee total, and requires every selected licensor before issuance. |
+| Local RedemptionGuard V2 | Assesses evidence/policy before permitting capped exposure. | Roles configure source policy and caps; a caller requests exposure with nonce/expiry. | Tracks assessment, exposure, and nonce consumption. | It gates asset exposure; this contract records licensor authorization for a specific use and apportions license fees. |
+
+This comparison justifies keeping license-bundle for the permission workflow while withholding the three sibling workflows pending portfolio-level combination decisions; it does not establish that all four are ecosystem-unique. Source: contracts/license_bundle_clearinghouse.py (_assess_compatibility, request_bundle, approve_bundle_request, _issue_request).
+
+**Evidence status:** implemented; the current direct suite passes 10 tests. Phase 3 still needs forged-result, validator-disagreement, unauthorized caller, replay, stale-version, and fee-accounting cases. The StudioNet runner probe passed, but this project has not had its own live demonstration yet.
