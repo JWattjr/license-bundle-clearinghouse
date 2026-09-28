@@ -874,7 +874,6 @@
   "deployed_source_git_blob_sha1": "91c651dc74432c25caa9937d8f2cd74332b57ad8",
   "onchain_source_matches_git_blob": true,
   "source_blob_check": "PASS",
-  "stop_error": "AttributeError: 'Account' object has no attribute 'address'",
   "release_helper_recovery": {
     "resumed_existing_deployment": true,
     "new_deployment_created_during_resume": false,
@@ -898,7 +897,9 @@
       },
       "release_evidence": false,
       "note": "write_contract returned before a harness metadata exception; the helper did not persist the hash. A later latest-final read confirms the state change. The temporary signer is not reused; release demo uses fresh IDs."
-    }
+    },
+    "intermediate_harness_error": "AttributeError: 'Account' object has no attribute 'address'",
+    "intermediate_harness_error_note": "The .18.0 SDK write_contract returned a transaction hash, then helper actor metadata lookup failed before persisting it. Latest-final state confirms the artwork registration; the hash is unavailable and the registration is excluded from release evidence."
   },
   "expected_failure_views": [
     {
