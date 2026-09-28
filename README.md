@@ -6,7 +6,7 @@ Incompatible or uncertain requests are recorded without reserving funds. A compa
 
 ## Toolchain
 
-The contract pins `py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6`. On 2026-09-28 it was deployed to StudioNet at `0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472` from source commit `eb01427c82e148aa3b50147f99724b88062622d0`; deployed code matched the committed Git blob. The first `register_license` transaction finalized with leader `contract_error` (`exit_code 1`), and all six public view methods returned an execution error. No compatibility judgment or permission flow was reached. The repository remains private pending a successful live method call. See [the release record](deployments/studionet-release-2026-09-28.json). `requirements.txt` pins the locally installed v0.6 RC test toolchain.
+The contract pins py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6. The first StudioNet deployment at 0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472 matched source commit eb01427c82e148aa3b50147f99724b88062622d0, but its genlayer-py 0.19.0rc2 method calls failed. A same-address retry with genlayer-py 0.18.0 successfully dispatched get_accounting, register_license, and the full compatible/incompatible bundle flow. That address remains marked as a failed deployment and is not release evidence; the retry was diagnostic. See [the client diagnosis](docs/CLIENT_COMPATIBILITY.md) and [the original release record](deployments/studionet-release-2026-09-28.json). The repository remains private.
 
 ```powershell
 py -3.14 -m venv .venv
@@ -17,6 +17,8 @@ genvm-lint validate contracts/license_bundle_clearinghouse.py
 genvm-lint schema contracts/license_bundle_clearinghouse.py --output contracts/abi.json
 python -m pytest
 ```
+
+requirements.txt is the direct-test stack. For StudioNet client calls, use a separate environment with requirements-runtime.txt, which pins genlayer-py==0.18.0. genlayer-test==0.30.0rc2 requires genlayer-py>=0.19.0rc2, so the test and runtime pins cannot be installed together by the standard resolver.
 
 Direct-mode tests mock model responses. They do not establish live consensus, network finality, or remote runner availability.
 
