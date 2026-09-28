@@ -16,4 +16,4 @@ Run `python -m pytest` from the repository root. Direct-mode tests mock model re
 
 | Every model-returned judgment field is validated and compared or bound to frozen input | `test_every_returned_judgment_field_is_compared_or_snapshot_bound` |
 
-The recorded direct-mode run passed 11 tests. GenVM lint passed 3 checks, SDK validation reported 15 methods (6 views and 9 writes), and schema extraction succeeded. No deployment was run.
+The recorded direct-mode run passed 11 tests before this release. GenVM lint passed 3 checks, SDK validation reported 15 methods (6 views and 9 writes), and schema extraction succeeded; none were rerun during this phase. One StudioNet deployment finalized with leader SUCCESS and its on-chain source matched the committed Git blob. The first `register_license` write finalized with leader ERROR (`contract_error`, `exit_code 1`); no compatibility judgment was run. Each of the six public views was attempted at `LATEST_FINAL`, and all 12 relevant reads returned `GenLayerError -32000: execution failed`. See the dated release JSON for full receipts and view errors.

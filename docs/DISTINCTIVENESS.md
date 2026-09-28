@@ -2,7 +2,7 @@
 
 Scope: contract source review against the other nine portfolio contracts, the named standalone contracts, and relevant local projects. This is a local comparison, not an ecosystem-wide originality claim.
 
-**Disposition: KEEP, with a mechanism-overlap caveat.** It is the only kept project whose terminal effect is an expiring multi-licensor permission, but its review/consent/reservation pipeline resembles three withheld portfolio projects.
+**Disposition: KEEP as the portfolio representative, with a mechanism-overlap caveat.** The source and direct tests implement an expiring permission over versioned licenses, exact-digest consent from every distinct licensor, and deterministic per-work fee credits. The live contract call failure leaves that implementation unverified on StudioNet. Its review/consent/reservation pipeline resembles three withheld portfolio projects.
 
 | Closest comparator | Its judgment | Participants and actions | Its state changes | Capability or invariant implemented here |
 |---|---|---|---|---|
@@ -12,6 +12,8 @@ Scope: contract source review against the other nine portfolio contracts, the na
 | New Proposal Consolidation Protocol (withheld) | Judges overlap and preservation of obligations across proposals. | Source authors and funders approve merge/migration of pledges. | Creates a consolidated proposal and migrates opted-in pledges. | This contract binds each license version and permission expiry, reserves one request fee total, and requires every selected licensor before issuance. |
 | Local RedemptionGuard V2 | Assesses evidence/policy before permitting capped exposure. | Roles configure source policy and caps; a caller requests exposure with nonce/expiry. | Tracks assessment, exposure, and nonce consumption. | It gates asset exposure; this contract records licensor authorization for a specific use and apportions license fees. |
 
-This comparison justifies keeping license-bundle for the permission workflow while withholding the three sibling workflows pending portfolio-level combination decisions; it does not establish that all four are ecosystem-unique. Source: contracts/license_bundle_clearinghouse.py (_assess_compatibility, request_bundle, approve_bundle_request, _issue_request).
+This comparison justifies keeping license-bundle as the portfolio representative while withholding the three sibling workflows pending portfolio-level combination decisions; it does not establish ecosystem-wide originality. Source: contracts/license_bundle_clearinghouse.py (_assess_compatibility, request_bundle, approve_bundle_request, _issue_request).
 
-**Evidence status:** implemented; the current direct suite passes 10 tests. Phase 3 still needs forged-result, validator-disagreement, unauthorized caller, replay, stale-version, and fee-accounting cases. The StudioNet runner probe passed, but this project has not had its own live demonstration yet.
+**Distinctiveness gate: PASS at source/test level.** The recorded direct suite covers bundle compatibility, per-licensor consent, fixed fee distribution, version snapshots, and refunds; this is a local comparison only.
+
+**Live evidence:** the StudioNet deployment finalized and matched the source Git blob, but `register_license` finalized as `contract_error` and all public view reads failed, so the resulting storage state could not be independently confirmed. All six public view methods returned execution errors, no semantic judgment was run, and the contract contribution is not live-demonstrated. The recorded project suite had 11 parameter-expanded tests before this release; it was not rerun during this phase.

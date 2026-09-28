@@ -1,0 +1,259 @@
+{
+  "schema_version": "1.0",
+  "release_date": "2026-09-28",
+  "timezone": "Africa/Lagos",
+  "project": {
+    "name": "license-bundle-clearinghouse",
+    "repository": "https://github.com/JWattjr/license-bundle-clearinghouse",
+    "source_commit": "eb01427c82e148aa3b50147f99724b88062622d0",
+    "source_branch": "master",
+    "source_path": "contracts/license_bundle_clearinghouse.py",
+    "source_git_blob_sha1": "91c651dc74432c25caa9937d8f2cd74332b57ad8",
+    "source_bytes": 24080
+  },
+  "network": {
+    "name": "GenLayer StudioNet",
+    "chain_id": 61999,
+    "rpc": "https://studio.genlayer.com/api",
+    "portal_used": false
+  },
+  "runner": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
+  "toolchain": {
+    "GenLayerJS": "1.1.8",
+    "GenLayer CLI": "0.39.2",
+    "Python": "3.14.2",
+    "genlayer-py": "0.19.0rc2",
+    "genlayer-test": "0.30.0rc2",
+    "genvm-linter": "0.11.1rc2"
+  },
+  "contract_constructor_args": [],
+  "contract_address": "0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472",
+  "participants": [
+    {
+      "role": "requester",
+      "account_label": "moment-grid-studionet",
+      "address": "0xdB433ff614bDD1ecE21Aa97221C3E0a7ecf79c92"
+    },
+    {
+      "role": "alice_artwork_licensor",
+      "account_label": "portal-five-release",
+      "address": "0x2C8EB5dB1105A85BE66BadafeD88D10cF393CDD8"
+    },
+    {
+      "role": "bob_dataset_licensor",
+      "account_label": "portal-five-release-new",
+      "address": "0x0839A6DDCeC7aA5E6028490266D6D3EFabE316B5"
+    }
+  ],
+  "transactions": [
+    {
+      "operation": "deploy_license_bundle_clearinghouse",
+      "hash": "0xae62e25fc47ea0a257f1a048542c5abb27d1b64c4719d91476ad6d4c1cf3b10b",
+      "actor": "0xdB433ff614bDD1ecE21Aa97221C3E0a7ecf79c92",
+      "submission_status": "SUBMITTED",
+      "expected_failure": false,
+      "acceptance_poll_status": "ACCEPTED",
+      "acceptance_poll_error": null,
+      "finality_status": "FINALIZED",
+      "finality_poll_error": null,
+      "leader_execution": "SUCCESS",
+      "leader_result_code": "return",
+      "leader_result_payload": {
+        "raw": "AAA=",
+        "status": "return",
+        "payload": {
+          "raw": [
+            0
+          ],
+          "readable": "null"
+        }
+      },
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "AGREE": 5
+      }
+    },
+    {
+      "operation": "register_synthetic_artwork_license",
+      "hash": "0xdf9b29fde048b7c25a4e22cc95c995204be4a2b5ab0a2832b1b26a0123888a67",
+      "actor": "0x2C8EB5dB1105A85BE66BadafeD88D10cF393CDD8",
+      "submission_status": "SUBMITTED",
+      "expected_failure": false,
+      "acceptance_poll_status": "ACCEPTED",
+      "acceptance_poll_error": null,
+      "finality_status": "FINALIZED",
+      "finality_poll_error": null,
+      "leader_execution": "ERROR",
+      "leader_result_code": "contract_error",
+      "leader_result_payload": {
+        "raw": "AmV4aXRfY29kZSAx",
+        "status": "contract_error",
+        "payload": "exit_code 1"
+      },
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "IDLE": 2,
+        "AGREE": 3
+      }
+    }
+  ],
+  "expected_failure_transactions": [],
+  "demo_result": "NOT_READY_REGISTRATION_DISPATCH_FAILED",
+  "evidence_mode": "Participant-submitted synthetic license text only; source code does not call web.get or web.render.",
+  "synthetic_fixture_note": "Both license texts and the requested clinic reports are synthetic demonstration fixtures. They do not verify copyright ownership or legal enforceability. Demo units are internal ledger entries, not GEN, a token, real payment, custody, or a commitment that work occurred.",
+  "synthetic_inputs": {
+    "artwork_terms": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+    "dataset_terms": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+    "compatible_requested_use": "Create and distribute a noncommercial public clinic report that includes both works with attribution and permits modifications.",
+    "incompatible_requested_use": "Create and commercially distribute a paid public clinic report that includes both works with attribution and permits modifications.",
+    "consent_deadline": "2026-10-05T00:00:00Z",
+    "permission_expiry": "2026-10-25T00:00:00Z"
+  },
+  "deployed_source_bytes": 24080,
+  "deployed_source_git_blob_sha1": "91c651dc74432c25caa9937d8f2cd74332b57ad8",
+  "onchain_source_matches_git_blob": true,
+  "stop_reason": "RuntimeError: register_synthetic_artwork_license finalized without leader SUCCESS; stopped without follow-on writes",
+  "repository_visibility_after_run": "PRIVATE",
+  "external_evidence_sources": [],
+  "web_fetch_used": false,
+  "execution_diagnostic": {
+    "registration_transaction": "0xdf9b29fde048b7c25a4e22cc95c995204be4a2b5ab0a2832b1b26a0123888a67",
+    "leader_error": "contract_error",
+    "leader_payload": "exit_code 1",
+    "validator_stderr_summary": "ValueError in resolve_method: call to private method Contract.__handle_undefined_method__; call to private method Contract.__receive__.",
+    "source_and_checked_in_abi_declare_method": true,
+    "source_line": 307,
+    "root_cause": "NOT_ESTABLISHED",
+    "follow_on_write_or_judgment_sent": false
+  },
+  "readback": {
+    "contract_address": "0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472",
+    "readback_at": "LATEST_FINAL",
+    "get_license": {
+      "artwork": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      },
+      "dataset": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      }
+    },
+    "get_license_version": {
+      "artwork_v1": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      },
+      "dataset_v1": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      }
+    },
+    "get_request": {
+      "clinic-report": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      },
+      "commercial-clinic-report": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      }
+    },
+    "get_permission": {
+      "clinic-report": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      },
+      "commercial-clinic-report": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      }
+    },
+    "get_balance": {
+      "requester": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      },
+      "alice": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      },
+      "bob": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      }
+    },
+    "get_accounting": {
+      "status": "ERROR",
+      "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+    },
+    "get_state_exposed": false
+  },
+  "actual_run_types": {
+    "static_source_and_docs_review": "Read contract, checked-in ABI, direct test fixtures, and official GenLayer first-contract documentation; no lint rerun.",
+    "mocked_direct_tests": "11 parameter-expanded direct tests were recorded as passing before this release; not rerun.",
+    "integration_tests": "Not run for this release.",
+    "live_network": "StudioNet chain 61999: one deployment finalized with leader SUCCESS and 5 AGREE votes; one registration finalized with leader ERROR and MAJORITY_AGREE (3 AGREE, 2 IDLE). No judgment or later write was submitted."
+  },
+  "self_review": {
+    "technical_readiness": {
+      "gate": "FAIL",
+      "evidence": [
+        "Deployment tx finalized with leader SUCCESS; deployed Git blob matches the source commit.",
+        "register_license at contracts/license_bundle_clearinghouse.py:307 finalized with leader ERROR, contract_error, exit_code 1.",
+        "All six public view methods failed at LATEST_FINAL, so contract storage could not be independently read back."
+      ]
+    },
+    "distinctiveness": {
+      "gate": "PASS",
+      "evidence": [
+        "Source and recorded direct tests implement cross-license use compatibility, exact-digest consent from each distinct licensor, versioned permission snapshots, and fixed per-work fee credits.",
+        "docs/DISTINCTIVENESS.md compares the mechanism locally against the other portfolio projects and named standalone contracts; this is not an ecosystem-wide originality claim."
+      ]
+    },
+    "evidence_readiness": {
+      "gate": "FAIL",
+      "evidence": [
+        "No live semantic judgment, permission issuance, or payment credit occurred.",
+        "The repository remains private because the live demonstration did not succeed; public anonymous URL checks were not applicable or performed.",
+        "No external web evidence is used; the attempted terms are disclosed synthetic fixtures."
+      ]
+    },
+    "verdict": "NOT READY",
+    "what_was_run": {
+      "static_source_and_docs_review": "Read contract, checked-in ABI, direct test fixtures, and official GenLayer first-contract documentation; no lint rerun.",
+      "mocked_direct_tests": "11 parameter-expanded direct tests were recorded as passing before this release; not rerun.",
+      "integration_tests": "Not run for this release.",
+      "live_network": "StudioNet chain 61999: one deployment finalized with leader SUCCESS and 5 AGREE votes; one registration finalized with leader ERROR and MAJORITY_AGREE (3 AGREE, 2 IDLE). No judgment or later write was submitted."
+    },
+    "unverified": [
+      "StudioNet dispatch and execution of public contract methods.",
+      "Registration, compatibility judgment, all-consent issuance, fee credits, and accounting readback on the live contract.",
+      "Copyright ownership, legal enforceability, real funds, custody, or external payment; none are represented by synthetic terms/demo units."
+    ],
+    "top_blockers": [
+      {
+        "file": "contracts/license_bundle_clearinghouse.py",
+        "line": 307,
+        "blocker": "The decorated registration method is declared in source/ABI, but StudioNet resolved the call to the private undefined-method handler."
+      },
+      {
+        "file": "contracts/license_bundle_clearinghouse.py",
+        "line": 469,
+        "blocker": "The get_license view also failed through the live SDK; all other public views failed the same way."
+      },
+      {
+        "file": "tests/test_bundle.py",
+        "line": 68,
+        "blocker": "The passing direct scenario mocks model output and does not establish live method dispatch or execution."
+      }
+    ],
+    "distinct_reusable_contribution": "A permission over a selected bundle of versioned licenses is issued only after every distinct licensor approves the exact use digest, then deterministic fixed fees are credited per work."
+  }
+}

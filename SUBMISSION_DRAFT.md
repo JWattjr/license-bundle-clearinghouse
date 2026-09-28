@@ -1,23 +1,17 @@
-# Submission draft — not deployed or submitted
+# Submission draft — not ready
 
-**Status: local draft only. This contract is undeployed and has not been submitted to the GenLayer Portal.**
+**Status: NOT READY.** A StudioNet deployment finalized, but the first contract method call failed before registration. The repository remains private and the contract has not been submitted to the Portal.
 
 ## Project
 
-`LicenseBundleClearinghouse` composes use permission from two to five registered, versioned license terms for one precisely scoped request. Selected licensors approve the same request digest, which includes their license versions, fixed fees, requested use, and permission expiry.
+`LicenseBundleClearinghouse` composes permission from two to five versioned licenses for one requested use. It reserves fixed demo fees, requires every distinct licensor to approve the same request digest, then records an expiring permission and credits each licensor.
 
-## Distinguishing mechanism
+## Evidence and limits
 
-GenLayer evaluates compatibility across the requested use and terms bundle. A compatible bundle reserves the sum of fixed per-work fees; permission issues and payment credits occur only after every distinct licensor consents. A term update stales pending requests and does not mutate already issued permission snapshots.
+The attempted terms and uses were synthetic participant-submitted text; the contract does not fetch external sources. Demo units are internal ledger entries, not real funds or custody.
 
-## Local verification recorded
+**The live run proves:** the committed source deployed and its on-chain Git blob matched the pre-deploy commit.
 
-- GenVM lint: passed 3 checks.
-- Contract validation: 15 methods (6 views, 9 writes).
-- ABI schema extraction: succeeded to `contracts/abi.json`.
-- Direct-mode tests: 10 passed, covering bundle conflicts and restrictions, exact licensor consent, fee distribution, rejection/cancel/expiry refunds, version invalidation, malformed/disagreeing output, and bounds.
-- Deployment, live consensus receipts, Portal review, and real payment or ownership verification: not performed.
+**The live run does not prove:** public methods execute, validators assess a bundle, or any permission or payout can complete.
 
-## Limitations
-
-Registration does not prove copyright ownership, and model compatibility is not legal advice. Demo units are internal ledger entries. The pinned runner's availability on a target chain remains unverified. This draft makes no ecosystem originality or Portal-score claim.
+See [`deployments/studionet-release-2026-09-28.json`](deployments/studionet-release-2026-09-28.json) for transaction receipts, attempted public-view readback, run types, and the separate readiness gates.
