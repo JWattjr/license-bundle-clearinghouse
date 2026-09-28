@@ -1,17 +1,23 @@
-# Submission draft — not ready
+# Submission draft — ready with caveats
 
-**Status: NOT READY.** A StudioNet deployment finalized, but the first contract method call failed before registration. The repository remains private and the contract has not been submitted to the Portal.
+**Status: READY WITH CAVEATS.** The final StudioNet release is deployed and the planned live demo completed. The repository remains private and has not been submitted to the Portal.
 
 ## Project
 
-`LicenseBundleClearinghouse` composes permission from two to five versioned licenses for one requested use. It reserves fixed demo fees, requires every distinct licensor to approve the same request digest, then records an expiring permission and credits each licensor.
+`LicenseBundleClearinghouse` composes permission from two to five versioned licenses for one requested use. It reserves fixed synthetic demo fees, requires each distinct licensor to approve the exact request digest, then records an expiring permission and credits each licensor.
 
-## Evidence and limits
+## Live evidence
 
-The attempted terms and uses were synthetic participant-submitted text; the contract does not fetch external sources. Demo units are internal ledger entries, not real funds or custody.
+The release deployment at `0x52B06c3284CE66Bb5085790dc043AfC6B232963c` came from source commit `e9bc336c1eaff364683431a494c8f13a4528c147`. Deployment transaction `0xeaaa99ceebafef2085971b6d6e6ab6176e5107ebd19eb0c870682785c0ced1da` finalized with leader SUCCESS, and the deployed source Git blob matched the committed source.
 
-**The live run proves:** the committed source deployed and its on-chain Git blob matched the pre-deploy commit.
+The planned demo recorded nine finalized transactions: seven leader SUCCESS and two labeled expected rollbacks. A compatible two-license bundle issued only after both licensors consented and credited 30 and 20 synthetic units. The unconsented request had no permission; the conflicting commercial request was classified `INCOMPATIBLE`, reserved no units, and could not receive approval. Final accounting was 100 minted, 100 available, 0 reserved, 50 fees paid, conserved. All six public view methods were read back.
 
-**The live run does not prove:** public methods execute, validators assess a bundle, or any permission or payout can complete.
+One earlier helper attempt on the release address submitted a separate `artwork` registration before a harness metadata error prevented the transaction hash from being saved. A later latest-final view confirms that license exists. It is explicitly recorded as an untracked, non-evidence side effect; the release demo used fresh IDs and a separate set of signers. The first deployment at `0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472` remains marked failed and is not evidence.
 
-See [`deployments/studionet-release-2026-09-28.json`](deployments/studionet-release-2026-09-28.json) for transaction receipts, attempted public-view readback, run types, and the separate readiness gates.
+The run used `genlayer-py==0.18.0` with the pinned runner. The direct suite passed 11 tests in ROOT `.venv` using the separate test stack. `genlayer-test==0.30.0rc2` requires `genlayer-py>=0.19.0rc2`, so those test dependencies cannot be installed together with the `.18.0` StudioNet runtime pin.
+
+## Scope and limits
+
+The terms and uses are synthetic participant-provided text. Demo units are internal ledger entries, not real funds, custody, tokens, or external payments. The demonstration does not establish copyright ownership, legal authority, or enforceability. Compatibility is a model judgment, not legal advice.
+
+See [the final release manifest](deployments/studionet-release-2026-09-28-client-fix.json), [the original failed deployment record](deployments/studionet-release-2026-09-28.json), and [the client compatibility record](docs/CLIENT_COMPATIBILITY.md) for complete transaction receipts, readbacks, dependency constraints, and diagnosis.

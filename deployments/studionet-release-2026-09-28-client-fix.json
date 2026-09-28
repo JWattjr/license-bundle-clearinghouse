@@ -1,0 +1,930 @@
+{
+  "schema_version": "1.1",
+  "release_date": "2026-09-28",
+  "timezone": "Africa/Lagos",
+  "status": "READY_WITH_CAVEATS",
+  "project": {
+    "name": "license-bundle-clearinghouse",
+    "repository": "https://github.com/JWattjr/license-bundle-clearinghouse",
+    "source_commit": "e9bc336c1eaff364683431a494c8f13a4528c147",
+    "source_branch": "master",
+    "source_path": "contracts/license_bundle_clearinghouse.py",
+    "source_git_blob_sha1": "91c651dc74432c25caa9937d8f2cd74332b57ad8",
+    "source_bytes": 24080
+  },
+  "network": {
+    "name": "GenLayer StudioNet",
+    "chain_id": 61999,
+    "rpc": "https://studio.genlayer.com/api",
+    "portal_used": false
+  },
+  "runner": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
+  "toolchain": {
+    "Python": "3.14.2",
+    "StudioNet_client": "genlayer-py 0.18.0",
+    "GenLayerJS": "not used",
+    "GenLayer_CLI": "not used"
+  },
+  "contract_constructor_args": [],
+  "contract_address": "0x52B06c3284CE66Bb5085790dc043AfC6B232963c",
+  "deployment_transaction": {
+    "hash": "0xeaaa99ceebafef2085971b6d6e6ab6176e5107ebd19eb0c870682785c0ced1da",
+    "submission_status": "SUBMITTED",
+    "operation": "deploy_license_bundle_clearinghouse",
+    "acceptance_status": "ACCEPTED",
+    "finality_status": "FINALIZED",
+    "leader_execution": "SUCCESS",
+    "leader_result_code": "return",
+    "leader_error_text": null,
+    "consensus_result": "MAJORITY_AGREE",
+    "rounds": 1,
+    "votes_committed": 5,
+    "votes_revealed": 5,
+    "vote_types": {
+      "AGREE": 4,
+      "IDLE": 1
+    }
+  },
+  "transactions": [
+    {
+      "operation": "register_artwork_license",
+      "method": "register_license",
+      "hash": "0x84ef8f15970495e743bd0b60767f3215585d98dbaa6cf8bbaa366faade48f408",
+      "actor": "0x708f39EC7Ee078B750f5D2Baf775485ea941645d",
+      "submission_status": "SUBMITTED",
+      "expected_failure": false,
+      "acceptance_status": "ACCEPTED",
+      "finality_status": "FINALIZED",
+      "leader_execution": "SUCCESS",
+      "leader_result_code": "return",
+      "leader_error_text": null,
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "IDLE": 2,
+        "AGREE": 3
+      }
+    },
+    {
+      "operation": "register_dataset_license",
+      "method": "register_license",
+      "hash": "0x1bae534ab4b267fad3a9dc29ca9ee256f21d3a955cb2d3c0fdad66816679c028",
+      "actor": "0xD8bc0EB73A8e0d822c26cc1Fe16c97aEeB7A01a0",
+      "submission_status": "SUBMITTED",
+      "expected_failure": false,
+      "acceptance_status": "ACCEPTED",
+      "finality_status": "FINALIZED",
+      "leader_execution": "SUCCESS",
+      "leader_result_code": "return",
+      "leader_error_text": null,
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "AGREE": 3,
+        "IDLE": 2
+      }
+    },
+    {
+      "operation": "deposit_100_synthetic_demo_units",
+      "method": "deposit_demo_units",
+      "hash": "0xfbeefad7a95b36b1f15b6f9cf98270d09f0a94c2de7843aab75a08da211bdbb1",
+      "actor": "0x3821b026E3ECC22cfc0af6b1791dD97372586421",
+      "submission_status": "SUBMITTED",
+      "expected_failure": false,
+      "acceptance_status": "ACCEPTED",
+      "finality_status": "FINALIZED",
+      "leader_execution": "SUCCESS",
+      "leader_result_code": "return",
+      "leader_error_text": null,
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "IDLE": 1,
+        "AGREE": 4
+      }
+    },
+    {
+      "operation": "request_compatible_noncommercial_bundle",
+      "method": "request_bundle",
+      "hash": "0x3fe532bdbf188169f12bb6fab7cfaf00e563ca59f25e484c48cbf97a15d6733a",
+      "actor": "0x3821b026E3ECC22cfc0af6b1791dD97372586421",
+      "submission_status": "SUBMITTED",
+      "expected_failure": false,
+      "acceptance_status": "ACCEPTED",
+      "finality_status": "FINALIZED",
+      "leader_execution": "SUCCESS",
+      "leader_result_code": "return",
+      "leader_error_text": null,
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "AGREE": 3,
+        "IDLE": 2
+      }
+    },
+    {
+      "operation": "alice_approves_compatible_bundle",
+      "method": "approve_bundle_request",
+      "hash": "0x2224128b69285878d426c20fcf8cb01b65ff02b947942b84c776e91fa9697375",
+      "actor": "0x708f39EC7Ee078B750f5D2Baf775485ea941645d",
+      "submission_status": "SUBMITTED",
+      "expected_failure": false,
+      "acceptance_status": "ACCEPTED",
+      "finality_status": "FINALIZED",
+      "leader_execution": "SUCCESS",
+      "leader_result_code": "return",
+      "leader_error_text": null,
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "IDLE": 2,
+        "AGREE": 3
+      }
+    },
+    {
+      "operation": "duplicate_alice_approval_rejected",
+      "method": "approve_bundle_request",
+      "hash": "0x28bc70ebbc98b65fa651a92f2e82ede4c6032e2420030dc99debc2c4313e8de9",
+      "actor": "0x708f39EC7Ee078B750f5D2Baf775485ea941645d",
+      "submission_status": "SUBMITTED",
+      "expected_failure": true,
+      "expected_failure_label": "EXPECTED_DUPLICATE_LICENSOR_APPROVAL_REJECTED_WHILE_BUNDLE_PENDING",
+      "acceptance_status": "ACCEPTED",
+      "finality_status": "FINALIZED",
+      "leader_execution": "ERROR",
+      "leader_result_code": "rollback",
+      "leader_error_text": "[EXPECTED] licensor has already consented",
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "AGREE": 3,
+        "IDLE": 2
+      }
+    },
+    {
+      "operation": "bob_approves_and_issues_compatible_bundle",
+      "method": "approve_bundle_request",
+      "hash": "0x163b509cbc1e4b2321663c5fc1fc2380bdd41845ce16830e1c5e070234296994",
+      "actor": "0xD8bc0EB73A8e0d822c26cc1Fe16c97aEeB7A01a0",
+      "submission_status": "SUBMITTED",
+      "expected_failure": false,
+      "acceptance_status": "ACCEPTED",
+      "finality_status": "FINALIZED",
+      "leader_execution": "SUCCESS",
+      "leader_result_code": "return",
+      "leader_error_text": null,
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "AGREE": 5
+      }
+    },
+    {
+      "operation": "request_conflicting_commercial_bundle",
+      "method": "request_bundle",
+      "hash": "0x4866f8f3dcf557f458f5f7297e31dc55bdc3a63369088c1b94dc373c1aed6db2",
+      "actor": "0x3821b026E3ECC22cfc0af6b1791dD97372586421",
+      "submission_status": "SUBMITTED",
+      "expected_failure": false,
+      "acceptance_status": "ACCEPTED",
+      "finality_status": "FINALIZED",
+      "leader_execution": "SUCCESS",
+      "leader_result_code": "return",
+      "leader_error_text": null,
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "AGREE": 3,
+        "IDLE": 1,
+        "DISAGREE": 1
+      }
+    },
+    {
+      "operation": "approval_of_conflicting_bundle_rejected",
+      "method": "approve_bundle_request",
+      "hash": "0x8d39382d1bf1402e41662e6124a3b5ad691bd7965fa53eb2c229642c691b2117",
+      "actor": "0x708f39EC7Ee078B750f5D2Baf775485ea941645d",
+      "submission_status": "SUBMITTED",
+      "expected_failure": true,
+      "expected_failure_label": "EXPECTED_INCOMPATIBLE_BUNDLE_CANNOT_RECEIVE_LICENSOR_APPROVAL",
+      "acceptance_status": "ACCEPTED",
+      "finality_status": "FINALIZED",
+      "leader_execution": "ERROR",
+      "leader_result_code": "rollback",
+      "leader_error_text": "[EXPECTED] request is not awaiting licensor consent",
+      "consensus_result": "MAJORITY_AGREE",
+      "rounds": 1,
+      "votes_committed": 5,
+      "votes_revealed": 5,
+      "vote_types": {
+        "AGREE": 5
+      }
+    }
+  ],
+  "expected_failure_transactions": [
+    {
+      "operation": "duplicate_alice_approval_rejected",
+      "label": "EXPECTED_DUPLICATE_LICENSOR_APPROVAL_REJECTED_WHILE_BUNDLE_PENDING",
+      "hash": "0x28bc70ebbc98b65fa651a92f2e82ede4c6032e2420030dc99debc2c4313e8de9"
+    },
+    {
+      "operation": "approval_of_conflicting_bundle_rejected",
+      "label": "EXPECTED_INCOMPATIBLE_BUNDLE_CANNOT_RECEIVE_LICENSOR_APPROVAL",
+      "hash": "0x8d39382d1bf1402e41662e6124a3b5ad691bd7965fa53eb2c229642c691b2117"
+    }
+  ],
+  "views": {
+    "get_accounting_initial": {
+      "status": "OK",
+      "value": {
+        "available_units": 0,
+        "conserved": true,
+        "fees_paid_units": 0,
+        "minted_units": 0,
+        "reserved_units": 0
+      }
+    },
+    "compatible_request_before_consent": {
+      "status": "OK",
+      "value": {
+        "approvals": [],
+        "compatibility": {
+          "conflict_pairs": [],
+          "license_decisions": [
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "artwork-release-20260928"
+            },
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "dataset-release-20260928"
+            }
+          ],
+          "snapshot_digest": "sha256:03f13bee0fc9e806f19212732da6d80ff457ea9f990d5101c6f019ec6925ec74"
+        },
+        "compatibility_digest": "sha256:03f13bee0fc9e806f19212732da6d80ff457ea9f990d5101c6f019ec6925ec74",
+        "compatibility_status": "COMPATIBLE",
+        "consent_deadline": "2026-10-05T00:00:00Z",
+        "fee_units": 50,
+        "licenses": [
+          {
+            "fee_units": 30,
+            "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+            "version": 1,
+            "work_id": "artwork-release-20260928",
+            "work_name": "Synthetic civic health report illustration"
+          },
+          {
+            "fee_units": 20,
+            "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+            "version": 1,
+            "work_id": "dataset-release-20260928",
+            "work_name": "Synthetic regional health measurements"
+          }
+        ],
+        "permission_expiry": "2026-10-25T00:00:00Z",
+        "request_digest": "sha256:e510f440fc59e01d2c91261bcd1d4bcb3c4c63c9d4f5b4557831d384b5cfeea5",
+        "request_id": "clinic-report-release-20260928",
+        "requested_use": "Create and distribute a noncommercial public clinic report that includes both works with attribution and permits modifications.",
+        "requester": "0x3821b026e3ecc22cfc0af6b1791dd97372586421",
+        "required_licensors": [
+          "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+          "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+        ],
+        "reserved_units": 50,
+        "status": "AWAITING_CONSENT"
+      }
+    },
+    "permission_before_all_consents": {
+      "status": "ERROR",
+      "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+    },
+    "issued_request": {
+      "status": "OK",
+      "value": {
+        "approvals": [
+          "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+          "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+        ],
+        "compatibility": {
+          "conflict_pairs": [],
+          "license_decisions": [
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "artwork-release-20260928"
+            },
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "dataset-release-20260928"
+            }
+          ],
+          "snapshot_digest": "sha256:03f13bee0fc9e806f19212732da6d80ff457ea9f990d5101c6f019ec6925ec74"
+        },
+        "compatibility_digest": "sha256:03f13bee0fc9e806f19212732da6d80ff457ea9f990d5101c6f019ec6925ec74",
+        "compatibility_status": "COMPATIBLE",
+        "consent_deadline": "2026-10-05T00:00:00Z",
+        "fee_units": 50,
+        "issued_at": "2026-09-28T13:20:56Z",
+        "licenses": [
+          {
+            "fee_units": 30,
+            "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+            "version": 1,
+            "work_id": "artwork-release-20260928",
+            "work_name": "Synthetic civic health report illustration"
+          },
+          {
+            "fee_units": 20,
+            "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+            "version": 1,
+            "work_id": "dataset-release-20260928",
+            "work_name": "Synthetic regional health measurements"
+          }
+        ],
+        "permission": {
+          "compatibility": {
+            "conflict_pairs": [],
+            "license_decisions": [
+              {
+                "finding": "PERMITTED",
+                "version": 1,
+                "work_id": "artwork-release-20260928"
+              },
+              {
+                "finding": "PERMITTED",
+                "version": 1,
+                "work_id": "dataset-release-20260928"
+              }
+            ],
+            "snapshot_digest": "sha256:03f13bee0fc9e806f19212732da6d80ff457ea9f990d5101c6f019ec6925ec74"
+          },
+          "licenses": [
+            {
+              "fee_units": 30,
+              "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+              "status": "ACTIVE",
+              "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+              "version": 1,
+              "work_id": "artwork-release-20260928",
+              "work_name": "Synthetic civic health report illustration"
+            },
+            {
+              "fee_units": 20,
+              "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+              "status": "ACTIVE",
+              "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+              "version": 1,
+              "work_id": "dataset-release-20260928",
+              "work_name": "Synthetic regional health measurements"
+            }
+          ],
+          "licensor_approvals": [
+            "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+            "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+          ],
+          "permission_expiry": "2026-10-25T00:00:00Z",
+          "request_digest": "sha256:e510f440fc59e01d2c91261bcd1d4bcb3c4c63c9d4f5b4557831d384b5cfeea5",
+          "request_id": "clinic-report-release-20260928",
+          "requested_use": "Create and distribute a noncommercial public clinic report that includes both works with attribution and permits modifications.",
+          "requester": "0x3821b026e3ecc22cfc0af6b1791dd97372586421"
+        },
+        "permission_expiry": "2026-10-25T00:00:00Z",
+        "request_digest": "sha256:e510f440fc59e01d2c91261bcd1d4bcb3c4c63c9d4f5b4557831d384b5cfeea5",
+        "request_id": "clinic-report-release-20260928",
+        "requested_use": "Create and distribute a noncommercial public clinic report that includes both works with attribution and permits modifications.",
+        "requester": "0x3821b026e3ecc22cfc0af6b1791dd97372586421",
+        "required_licensors": [
+          "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+          "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+        ],
+        "reserved_units": 0,
+        "status": "ISSUED"
+      }
+    },
+    "issued_permission": {
+      "status": "OK",
+      "value": {
+        "compatibility": {
+          "conflict_pairs": [],
+          "license_decisions": [
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "artwork-release-20260928"
+            },
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "dataset-release-20260928"
+            }
+          ],
+          "snapshot_digest": "sha256:03f13bee0fc9e806f19212732da6d80ff457ea9f990d5101c6f019ec6925ec74"
+        },
+        "licenses": [
+          {
+            "fee_units": 30,
+            "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+            "version": 1,
+            "work_id": "artwork-release-20260928",
+            "work_name": "Synthetic civic health report illustration"
+          },
+          {
+            "fee_units": 20,
+            "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+            "version": 1,
+            "work_id": "dataset-release-20260928",
+            "work_name": "Synthetic regional health measurements"
+          }
+        ],
+        "licensor_approvals": [
+          "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+          "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+        ],
+        "permission_expiry": "2026-10-25T00:00:00Z",
+        "permission_status": "ACTIVE",
+        "request_digest": "sha256:e510f440fc59e01d2c91261bcd1d4bcb3c4c63c9d4f5b4557831d384b5cfeea5",
+        "request_id": "clinic-report-release-20260928",
+        "requested_use": "Create and distribute a noncommercial public clinic report that includes both works with attribution and permits modifications.",
+        "requester": "0x3821b026e3ecc22cfc0af6b1791dd97372586421"
+      }
+    },
+    "conflicting_request": {
+      "status": "OK",
+      "value": {
+        "approvals": [],
+        "compatibility": {
+          "conflict_pairs": [
+            [
+              "artwork-release-20260928",
+              "dataset-release-20260928"
+            ]
+          ],
+          "license_decisions": [
+            {
+              "finding": "NOT_PERMITTED",
+              "version": 1,
+              "work_id": "artwork-release-20260928"
+            },
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "dataset-release-20260928"
+            }
+          ],
+          "snapshot_digest": "sha256:02cff6ba164000c0644488396576b0229b8f6ef1bbcda69e11c203a1515b4d11"
+        },
+        "compatibility_digest": "sha256:02cff6ba164000c0644488396576b0229b8f6ef1bbcda69e11c203a1515b4d11",
+        "compatibility_status": "INCOMPATIBLE",
+        "consent_deadline": "2026-10-05T00:00:00Z",
+        "fee_units": 50,
+        "licenses": [
+          {
+            "fee_units": 30,
+            "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+            "version": 1,
+            "work_id": "artwork-release-20260928",
+            "work_name": "Synthetic civic health report illustration"
+          },
+          {
+            "fee_units": 20,
+            "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+            "version": 1,
+            "work_id": "dataset-release-20260928",
+            "work_name": "Synthetic regional health measurements"
+          }
+        ],
+        "permission_expiry": "2026-10-25T00:00:00Z",
+        "request_digest": "sha256:081ebce0f5b1f9dd8a5f0417d886901b5548b6d1bad4501f579e407f6a1a08a0",
+        "request_id": "commercial-clinic-report-release-20260928",
+        "requested_use": "Create and commercially distribute a paid public clinic report that includes both works with attribution and permits modifications.",
+        "requester": "0x3821b026e3ecc22cfc0af6b1791dd97372586421",
+        "required_licensors": [
+          "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+          "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+        ],
+        "reserved_units": 0,
+        "status": "DENIED_INCOMPATIBLE"
+      }
+    },
+    "get_license_artwork": {
+      "status": "OK",
+      "value": {
+        "fee_units": 30,
+        "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+        "status": "ACTIVE",
+        "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+        "version": 1,
+        "work_id": "artwork-release-20260928",
+        "work_name": "Synthetic civic health report illustration"
+      }
+    },
+    "get_license_dataset": {
+      "status": "OK",
+      "value": {
+        "fee_units": 20,
+        "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+        "status": "ACTIVE",
+        "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+        "version": 1,
+        "work_id": "dataset-release-20260928",
+        "work_name": "Synthetic regional health measurements"
+      }
+    },
+    "get_license_version_artwork_v1": {
+      "status": "OK",
+      "value": {
+        "fee_units": 30,
+        "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+        "status": "ACTIVE",
+        "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+        "version": 1,
+        "work_id": "artwork-release-20260928",
+        "work_name": "Synthetic civic health report illustration"
+      }
+    },
+    "get_license_version_dataset_v1": {
+      "status": "OK",
+      "value": {
+        "fee_units": 20,
+        "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+        "status": "ACTIVE",
+        "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+        "version": 1,
+        "work_id": "dataset-release-20260928",
+        "work_name": "Synthetic regional health measurements"
+      }
+    },
+    "get_request_compatible": {
+      "status": "OK",
+      "value": {
+        "approvals": [
+          "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+          "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+        ],
+        "compatibility": {
+          "conflict_pairs": [],
+          "license_decisions": [
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "artwork-release-20260928"
+            },
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "dataset-release-20260928"
+            }
+          ],
+          "snapshot_digest": "sha256:03f13bee0fc9e806f19212732da6d80ff457ea9f990d5101c6f019ec6925ec74"
+        },
+        "compatibility_digest": "sha256:03f13bee0fc9e806f19212732da6d80ff457ea9f990d5101c6f019ec6925ec74",
+        "compatibility_status": "COMPATIBLE",
+        "consent_deadline": "2026-10-05T00:00:00Z",
+        "fee_units": 50,
+        "issued_at": "2026-09-28T13:20:56Z",
+        "licenses": [
+          {
+            "fee_units": 30,
+            "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+            "version": 1,
+            "work_id": "artwork-release-20260928",
+            "work_name": "Synthetic civic health report illustration"
+          },
+          {
+            "fee_units": 20,
+            "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+            "version": 1,
+            "work_id": "dataset-release-20260928",
+            "work_name": "Synthetic regional health measurements"
+          }
+        ],
+        "permission": {
+          "compatibility": {
+            "conflict_pairs": [],
+            "license_decisions": [
+              {
+                "finding": "PERMITTED",
+                "version": 1,
+                "work_id": "artwork-release-20260928"
+              },
+              {
+                "finding": "PERMITTED",
+                "version": 1,
+                "work_id": "dataset-release-20260928"
+              }
+            ],
+            "snapshot_digest": "sha256:03f13bee0fc9e806f19212732da6d80ff457ea9f990d5101c6f019ec6925ec74"
+          },
+          "licenses": [
+            {
+              "fee_units": 30,
+              "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+              "status": "ACTIVE",
+              "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+              "version": 1,
+              "work_id": "artwork-release-20260928",
+              "work_name": "Synthetic civic health report illustration"
+            },
+            {
+              "fee_units": 20,
+              "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+              "status": "ACTIVE",
+              "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+              "version": 1,
+              "work_id": "dataset-release-20260928",
+              "work_name": "Synthetic regional health measurements"
+            }
+          ],
+          "licensor_approvals": [
+            "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+            "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+          ],
+          "permission_expiry": "2026-10-25T00:00:00Z",
+          "request_digest": "sha256:e510f440fc59e01d2c91261bcd1d4bcb3c4c63c9d4f5b4557831d384b5cfeea5",
+          "request_id": "clinic-report-release-20260928",
+          "requested_use": "Create and distribute a noncommercial public clinic report that includes both works with attribution and permits modifications.",
+          "requester": "0x3821b026e3ecc22cfc0af6b1791dd97372586421"
+        },
+        "permission_expiry": "2026-10-25T00:00:00Z",
+        "request_digest": "sha256:e510f440fc59e01d2c91261bcd1d4bcb3c4c63c9d4f5b4557831d384b5cfeea5",
+        "request_id": "clinic-report-release-20260928",
+        "requested_use": "Create and distribute a noncommercial public clinic report that includes both works with attribution and permits modifications.",
+        "requester": "0x3821b026e3ecc22cfc0af6b1791dd97372586421",
+        "required_licensors": [
+          "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+          "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+        ],
+        "reserved_units": 0,
+        "status": "ISSUED"
+      }
+    },
+    "get_request_conflicting": {
+      "status": "OK",
+      "value": {
+        "approvals": [],
+        "compatibility": {
+          "conflict_pairs": [
+            [
+              "artwork-release-20260928",
+              "dataset-release-20260928"
+            ]
+          ],
+          "license_decisions": [
+            {
+              "finding": "NOT_PERMITTED",
+              "version": 1,
+              "work_id": "artwork-release-20260928"
+            },
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "dataset-release-20260928"
+            }
+          ],
+          "snapshot_digest": "sha256:02cff6ba164000c0644488396576b0229b8f6ef1bbcda69e11c203a1515b4d11"
+        },
+        "compatibility_digest": "sha256:02cff6ba164000c0644488396576b0229b8f6ef1bbcda69e11c203a1515b4d11",
+        "compatibility_status": "INCOMPATIBLE",
+        "consent_deadline": "2026-10-05T00:00:00Z",
+        "fee_units": 50,
+        "licenses": [
+          {
+            "fee_units": 30,
+            "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+            "version": 1,
+            "work_id": "artwork-release-20260928",
+            "work_name": "Synthetic civic health report illustration"
+          },
+          {
+            "fee_units": 20,
+            "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+            "version": 1,
+            "work_id": "dataset-release-20260928",
+            "work_name": "Synthetic regional health measurements"
+          }
+        ],
+        "permission_expiry": "2026-10-25T00:00:00Z",
+        "request_digest": "sha256:081ebce0f5b1f9dd8a5f0417d886901b5548b6d1bad4501f579e407f6a1a08a0",
+        "request_id": "commercial-clinic-report-release-20260928",
+        "requested_use": "Create and commercially distribute a paid public clinic report that includes both works with attribution and permits modifications.",
+        "requester": "0x3821b026e3ecc22cfc0af6b1791dd97372586421",
+        "required_licensors": [
+          "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+          "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+        ],
+        "reserved_units": 0,
+        "status": "DENIED_INCOMPATIBLE"
+      }
+    },
+    "get_permission_compatible": {
+      "status": "OK",
+      "value": {
+        "compatibility": {
+          "conflict_pairs": [],
+          "license_decisions": [
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "artwork-release-20260928"
+            },
+            {
+              "finding": "PERMITTED",
+              "version": 1,
+              "work_id": "dataset-release-20260928"
+            }
+          ],
+          "snapshot_digest": "sha256:03f13bee0fc9e806f19212732da6d80ff457ea9f990d5101c6f019ec6925ec74"
+        },
+        "licenses": [
+          {
+            "fee_units": 30,
+            "licensor": "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: reproduction and modification are permitted in noncommercial public-health clinic reports with attribution. Any paid, commercial, advertising, promotional, or for-profit use is expressly forbidden.",
+            "version": 1,
+            "work_id": "artwork-release-20260928",
+            "work_name": "Synthetic civic health report illustration"
+          },
+          {
+            "fee_units": 20,
+            "licensor": "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0",
+            "status": "ACTIVE",
+            "terms_text": "Synthetic demonstration license: redistribution and modification are permitted in public-health clinic reports with attribution, including commercial distribution.",
+            "version": 1,
+            "work_id": "dataset-release-20260928",
+            "work_name": "Synthetic regional health measurements"
+          }
+        ],
+        "licensor_approvals": [
+          "0x708f39ec7ee078b750f5d2baf775485ea941645d",
+          "0xd8bc0eb73a8e0d822c26cc1fe16c97aeeb7a01a0"
+        ],
+        "permission_expiry": "2026-10-25T00:00:00Z",
+        "permission_status": "ACTIVE",
+        "request_digest": "sha256:e510f440fc59e01d2c91261bcd1d4bcb3c4c63c9d4f5b4557831d384b5cfeea5",
+        "request_id": "clinic-report-release-20260928",
+        "requested_use": "Create and distribute a noncommercial public clinic report that includes both works with attribution and permits modifications.",
+        "requester": "0x3821b026e3ecc22cfc0af6b1791dd97372586421"
+      }
+    },
+    "get_permission_conflicting": {
+      "status": "ERROR",
+      "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+    },
+    "get_balance_requester": {
+      "status": "OK",
+      "value": 50
+    },
+    "get_balance_alice": {
+      "status": "OK",
+      "value": 30
+    },
+    "get_balance_bob": {
+      "status": "OK",
+      "value": 20
+    },
+    "get_accounting_final": {
+      "status": "OK",
+      "value": {
+        "available_units": 100,
+        "conserved": true,
+        "fees_paid_units": 50,
+        "minted_units": 100,
+        "reserved_units": 0
+      }
+    }
+  },
+  "previous_failed_deployment": {
+    "address": "0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472",
+    "source_commit": "eb01427c82e148aa3b50147f99724b88062622d0",
+    "deployment_tx": "0xae62e25fc47ea0a257f1a048542c5abb27d1b64c4719d91476ad6d4c1cf3b10b",
+    "failed_registration_tx": "0xdf9b29fde048b7c25a4e22cc95c995204be4a2b5ab0a2832b1b26a0123888a67",
+    "registration_outcome": {
+      "finality": "FINALIZED",
+      "leader_execution": "ERROR",
+      "result_code": "contract_error",
+      "exit_code": 1,
+      "error_text": "ValueError in resolve_method: call to private method Contract.__handle_undefined_method__; call to private method Contract.__receive__."
+    },
+    "initial_views_error": "GenLayerError: gen_call failed (code=-32000): execution failed",
+    "release_role": "FAILED_DEPLOYMENT_NOT_EVIDENCE",
+    "diagnostic_retry_role": "CLIENT_DIAGNOSTIC_NOT_RELEASE_EVIDENCE",
+    "diagnostic_retry": {
+      "client": "genlayer-py 0.18.0",
+      "get_accounting_read_succeeded": true,
+      "diagnostic_demo_result": "SUCCESS_COMPATIBLE_ISSUED_AND_PAID_CONFLICT_BLOCKED",
+      "release_evidence": false,
+      "details": "Diagnostic retries on the old failed deployment are preserved in the local diagnostic JSON artifacts and are not release evidence."
+    }
+  },
+  "demo_result": "SUCCESS_COMPATIBLE_BUNDLE_ISSUED_AND_PAID_CONFLICT_BLOCKED",
+  "evidence_mode": "Synthetic, participant-provided license terms only; no external ownership or license validity is verified.",
+  "synthetic_fixture_note": "License texts and requested uses are synthetic demonstration fixtures. Demo units are internal ledger entries, not GEN, a token, real payment, custody, or a commitment that work occurred.",
+  "participants": {
+    "requester": "0x3821b026E3ECC22cfc0af6b1791dD97372586421",
+    "alice": "0x708f39EC7Ee078B750f5D2Baf775485ea941645d",
+    "bob": "0xD8bc0EB73A8e0d822c26cc1Fe16c97aEeB7A01a0"
+  },
+  "runtime_client_executable": "C:\\Python314\\python.exe",
+  "deployed_source_bytes": 24080,
+  "deployed_source_git_blob_sha1": "91c651dc74432c25caa9937d8f2cd74332b57ad8",
+  "onchain_source_matches_git_blob": true,
+  "source_blob_check": "PASS",
+  "stop_error": "AttributeError: 'Account' object has no attribute 'address'",
+  "release_helper_recovery": {
+    "resumed_existing_deployment": true,
+    "new_deployment_created_during_resume": false,
+    "first_read_error": "GenLayerError: gen_call failed (code=-32602): Incorrect address format. Please provide a valid address.",
+    "root_cause": "The release helper did not assign the address returned by deploy() to its ADDRESS global before calling read_contract; the failed request sent a null target. The checksum address succeeds when supplied explicitly.",
+    "orphaned_submission": {
+      "operation": "initial_register_artwork_license",
+      "method": "register_license",
+      "work_id": "artwork",
+      "actor": "0x2C87bd333868c098Bc14727e7264aCc7FBD31EeD",
+      "transaction_hash": null,
+      "finality_status": "UNAVAILABLE_HASH_NOT_CAPTURED",
+      "leader_execution": "UNKNOWN",
+      "latest_final_readback": {
+        "status": "ACTIVE",
+        "work_id": "artwork",
+        "work_name": "Synthetic civic health report illustration",
+        "licensor": "0x2c87bd333868c098bc14727e7264acc7fbd31eed",
+        "fee_units": 30,
+        "version": 1
+      },
+      "release_evidence": false,
+      "note": "write_contract returned before a harness metadata exception; the helper did not persist the hash. A later latest-final read confirms the state change. The temporary signer is not reused; release demo uses fresh IDs."
+    }
+  },
+  "expected_failure_views": [
+    {
+      "label": "EXPECTED_UNCONSENTED_BUNDLE_HAS_NO_PERMISSION",
+      "method": "get_permission",
+      "request_id": "clinic-report-release-20260928",
+      "result": {
+        "status": "ERROR",
+        "error": "GenLayerError: gen_call failed (code=-32000): execution failed"
+      }
+    }
+  ],
+  "release_evidence_status": "PASS_NEW_DEPLOYMENT",
+  "demo_summary": {
+    "compatible_bundle_issued": true,
+    "every_distinct_licensor_consented": true,
+    "synthetic_fee_credits": {
+      "artwork": 30,
+      "dataset": 20
+    },
+    "unconsented_bundle_blocked": true,
+    "conflicting_commercial_bundle_blocked": true,
+    "expected_failure_transaction_count": 2,
+    "transaction_count_excluding_deployment": 9
+  },
+  "readback_scope": "All six public view methods, both licenses and version snapshots, both requests, both permission states, all three balances, and final accounting.",
+  "live_demo_proves": "On the fresh deployment from the pushed client-fix commit, the runner loaded the committed source; the compatible bundle reached an active permission after exact consent from both licensors and credited fixed synthetic fees; the unconsented and conflicting paths did not issue permission or reserve funds.",
+  "live_demo_does_not_prove": "The synthetic terms establish no copyright ownership, legal enforceability, real-world rights, real funds, custody, token transfers, or external payment."
+}

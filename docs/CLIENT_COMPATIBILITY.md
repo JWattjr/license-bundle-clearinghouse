@@ -14,6 +14,14 @@ A get_accounting() retry on the old address using genlayer-py 0.18.0 succeeded a
 
 From ROOT\.venv, the project direct suite passed 11 tests in 1.07s. tests/test_bundle.py exercises register_license and get_accounting. The test environment used genlayer-test 0.30.0rc2 with genlayer-py 0.19.0rc2; that test package declares genlayer-py>=0.19.0rc2, so it cannot be resolved together with the live-client pin. The checked-in requirements.txt is the direct-test stack. Use requirements-runtime.txt in a separate environment for StudioNet calls.
 
+## Final release
+
+The ordered diagnosis was conclusive at step 2: `get_accounting()` failed through the portfolio `.19.0rc2` path but succeeded against the same deployed address with `genlayer-py==0.18.0`; `.18.0` also successfully dispatched `register_license` and completed the diagnostic bundle flow. The exact `.19` registration error and saved view error are recorded above. The historical semantic-barter process did not stamp its executable/version, so its `.18.0` attribution remains an inference; the license-bundle retry and final release do stamp `.18.0`.
+
+The final release from commit `e9bc336c1eaff364683431a494c8f13a4528c147` is at `0x52B06c3284CE66Bb5085790dc043AfC6B232963c`. Its deployment finalized with leader SUCCESS and its on-chain blob matches Git. The nine recorded demo transactions finalized (seven SUCCESS and two expected rollbacks), and the compatible / blocked-conflict readbacks passed. See [the release manifest](../deployments/studionet-release-2026-09-28-client-fix.json). The old `0x907c...7472` address remains a failed deployment and diagnostic-only.
+
+The release helper initially omitted its `ADDRESS` global assignment, then hit an SDK metadata error after an initial registration was submitted. The registration is visible in latest-final state but its hash was not captured; the manifest records it as a separate non-evidence side effect, and the planned demo used new IDs. These helper errors are separate from the contract's `.19`/`.18` compatibility diagnosis.
+
 ## Use
 
-Use genlayer-py 0.18.0 for StudioNet calls with the pinned runner. The full release still requires a fresh deployment from the client-fix source commit, an exact source-blob check, finalized deployment with leader SUCCESS, and the planned demo. Do not count the original address or its diagnostic rerun as release evidence.
+Use `genlayer-py==0.18.0` from `requirements-runtime.txt` for StudioNet calls with the pinned runner. Keep the direct-test stack in `requirements.txt`: `genlayer-test==0.30.0rc2` requires `genlayer-py>=0.19.0rc2`, so the direct-test and live-runtime pins cannot be resolved together in one environment. The old address and its diagnostic rerun are not release evidence.
