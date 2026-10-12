@@ -1,0 +1,182 @@
+{
+  "executable": "C:\\Users\\User\\Desktop\\Genlayer apps\\intelligent-contracts-v2\\.venv\\Scripts\\python.exe",
+  "structures": {
+    "license": {
+      "source": "C:\\Users\\User\\Desktop\\Genlayer apps\\intelligent-contracts-v2\\license-bundle-clearinghouse\\contracts\\license_bundle_clearinghouse.py",
+      "class_count": 1,
+      "classes": [
+        {
+          "name": "LicenseBundleClearinghouse",
+          "bases": [
+            "gl.Contract"
+          ],
+          "constructor": [
+            "self"
+          ],
+          "public_decorators": {
+            "gl.public.write": 9,
+            "gl.public.view": 6
+          }
+        }
+      ],
+      "module_level_statement_types": {
+        "Expr": 1,
+        "ImportFrom": 2,
+        "Import": 3,
+        "Assign": 10,
+        "FunctionDef": 12,
+        "ClassDef": 1
+      }
+    },
+    "working_sibling": {
+      "source": "C:\\Users\\User\\Desktop\\Genlayer apps\\intelligent-contracts-v2\\semantic-barter-clearinghouse\\contracts\\semantic_barter_clearinghouse.py",
+      "class_count": 1,
+      "classes": [
+        {
+          "name": "SemanticBarterClearinghouse",
+          "bases": [
+            "gl.Contract"
+          ],
+          "constructor": [
+            "self"
+          ],
+          "public_decorators": {
+            "gl.public.write": 9,
+            "gl.public.view": 4
+          }
+        }
+      ],
+      "module_level_statement_types": {
+        "Expr": 1,
+        "ImportFrom": 2,
+        "Import": 3,
+        "Assign": 5,
+        "FunctionDef": 11,
+        "ClassDef": 1
+      }
+    }
+  },
+  "finalized": [
+    {
+      "operation": "deploy",
+      "hash": "0x1f1d3ab9d30101baf32df1a35b433e808ed03162198ab2ab2803e4a6934ebeda",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "register-water-art",
+      "hash": "0xb26ee98cb979c5df55f392bec82a30c42cf7535c7afe5c0471bff213908bb9d6",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "register-water-data",
+      "hash": "0x400ef6b1a0a7e11a041b54bc209a3b8ffbc841302717413896cc2136a86f02a8",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "register-nc-photo",
+      "hash": "0xe32f4fb95e6df844831a00c459ce5fc6d49ad94a79f63c4252648d03a0678640",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "deposit-budget",
+      "hash": "0x978cdf6b2d646c279a716726030230eb0f65cb92ac931de5b83b13c8a8948325",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "compatible",
+      "hash": "0x8a499304924761357bcd2c290bd092a1c6a03ae556ec7a74d6930e5edc5de84e",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "compatible-alice-consent",
+      "hash": "0x0db28a14127a69913944ac8e6e18d08a5a4577c51c73ebade0930e7ea78f7bd2",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "compatible-bob-issues",
+      "hash": "0x55600cc1881e1c7e00f7b997445af3181438ff321052ab884164e198375e9005",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "commercial-nc",
+      "hash": "0x9af35ba2dadcb02866d26b8559b3986fde15b97b3b4c333653b9f2d91af6ab77",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "missing-consent",
+      "hash": "0x2a5876d7706f1f5d95e9a71ff8cdd40bbbbaa24f5bdf0c46b50dfb09f10270d1",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "missing-consent-alice-only",
+      "hash": "0x751b0d7af0f7a275065e7d9db2250dd2f8ded7cbc47de2dd813ea27881f04cf1",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "missing-consent-cancel-refund",
+      "hash": "0x2792c4f93653af663a810c516461aa24fc68fdbfe891346191225ee2c7a7652d",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "stale-consent",
+      "hash": "0x387f58b3654785b1eaf45af94fda84caf3a5ac170f46277fdc902871e81e5db3",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "update-terms-v2",
+      "hash": "0xd34c172c1d1bda41567cc16d40fe6a4da96c745befea1345a4c6422214481bab",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    },
+    {
+      "operation": "stale-version-approval-rejected",
+      "hash": "0x56c9febfcdedbbd668579df3eb7a4b5f0493af3ea245b39bf9446d91f3a01c3c",
+      "status": "FINALIZED",
+      "leader_execution": "ERROR"
+    },
+    {
+      "operation": "stale-invalidate-refund",
+      "hash": "0x83ce04166af69e5d5dd413174ab9b3030e38fc902f68c5f515d5bb06a0e56c20",
+      "status": "FINALIZED",
+      "leader_execution": "SUCCESS"
+    }
+  ],
+  "explorer_checks": [
+    {
+      "url": "https://explorer-studio.genlayer.com/tx/0x55600cc1881e1c7e00f7b997445af3181438ff321052ab884164e198375e9005",
+      "page_contents_verified": false,
+      "reason": "The first Explorer evidence page returned HTTP 403 to automated access; further page requests were not retried. Transaction receipts verified through StudioNet RPC."
+    },
+    {
+      "url": "https://explorer-studio.genlayer.com/tx/0x9af35ba2dadcb02866d26b8559b3986fde15b97b3b4c333653b9f2d91af6ab77",
+      "page_contents_verified": false,
+      "reason": "The first Explorer evidence page returned HTTP 403 to automated access; further page requests were not retried. Transaction receipts verified through StudioNet RPC."
+    },
+    {
+      "url": "https://explorer-studio.genlayer.com/tx/0x751b0d7af0f7a275065e7d9db2250dd2f8ded7cbc47de2dd813ea27881f04cf1",
+      "page_contents_verified": false,
+      "reason": "The first Explorer evidence page returned HTTP 403 to automated access; further page requests were not retried. Transaction receipts verified through StudioNet RPC."
+    },
+    {
+      "url": "https://explorer-studio.genlayer.com/tx/0x56c9febfcdedbbd668579df3eb7a4b5f0493af3ea245b39bf9446d91f3a01c3c",
+      "page_contents_verified": false,
+      "reason": "The first Explorer evidence page returned HTTP 403 to automated access; further page requests were not retried. Transaction receipts verified through StudioNet RPC."
+    }
+  ],
+  "source_sha256": "6d7f50d219e01cdbd0b8ad59657111391720cad14f172967dd4a119eb3944e71",
+  "portal_characters": 804,
+  "accounting_checks": 16
+}

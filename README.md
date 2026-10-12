@@ -4,25 +4,22 @@
 
 Incompatible or uncertain requests are recorded without reserving funds. A compatible request reserves the sum of its fixed fees. Every distinct licensor must approve the same request digest, which includes the requested use and each selected terms version. Once all licensors consent, the contract issues a permission snapshot and credits each fixed fee to its licensor. A later terms update makes a pending request stale; it does not rewrite an already issued permission.
 
-## Toolchain
+## Toolchain and verified release
 
-The contract pins runner `py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6`. The first StudioNet deployment at `0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472` used source commit `eb01427c82e148aa3b50147f99724b88062622d0`; its calls failed with `genlayer-py==0.19.0rc2` and it remains a failed deployment, not evidence. A `.18.0` same-address retry established the client compatibility diagnosis but is diagnostic only.
+The runner remains `py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6`. The portfolio venv uses `genlayer-py==0.19.0rc2`; its empty-string method key is incompatible with this runner's `method` key. `studionet_compat.py` changes only that selector inside a context restricted to StudioNet, this runner, and this client version. The regression executes the actual pinned runner resolver and reproduces the old fallback error before verifying corrected view/write dispatch. See [the diagnosis](docs/CLIENT_COMPATIBILITY.md).
 
-The release deployment is `0x52B06c3284CE66Bb5085790dc043AfC6B232963c`, deployed from commit `e9bc336c1eaff364683431a494c8f13a4528c147`. Deployment transaction `0xeaaa99ceebafef2085971b6d6e6ab6176e5107ebd19eb0c870682785c0ced1da` finalized with leader SUCCESS, and its on-chain source blob matches the committed contract. The nine recorded demo transactions finalized: seven leader SUCCESS and two expected rollbacks. The compatible bundle issued and credited 30/20 synthetic units; unconsented and conflicting requests remained blocked. See [the final release manifest](deployments/studionet-release-2026-09-28-client-fix.json), [the client diagnosis](docs/CLIENT_COMPATIBILITY.md), and [the original failed deployment record](deployments/studionet-release-2026-09-28.json). The manifest discloses one earlier helper-submitted registration whose transaction hash was not captured; that separate side effect is excluded from release evidence. The repository remains private.
+The 2026-10-12 release is `0x48E3539Ef83ed5459B13bB6D3778b003CBfd3a32`, deployed from pushed commit `d3d01f1c94dacc45cbdd607cdd2be28ecd6563c4`. Deployment and all 15 demo writes reached FINALIZED; 15 executions were leader SUCCESS and 1 was the labeled expected stale-version rollback. ACCEPTED observations and FINALIZED status are recorded separately from execution results. The deployed source equals the Git blob byte-for-byte. The compatible commercial CC-BY-style bundle issued after both licensors approved and credited fixed fees of 30 and 20. Commercial use of the CC-BY-NC-style work was denied with a NOT_PERMITTED finding and a recorded conflict pair against the other selected work, one missing consent prevented permission, and consent after a version update rolled back as stale. Every step has a latest-final read-back; pending missing/stale requests were refunded after evidence was captured.
+
+See [the current release manifest](deployments/studionet-release-2026-10-12.json) and [the evidence list and Portal draft](SUBMISSION_DRAFT.md). The original `0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472` deployment remains failed and is not evidence; same-address diagnostic reads are excluded. The earlier 2026-09-28 release remains historical evidence. The repo is PRIVATE, and nothing has been submitted to the Portal.
+
+From this repository, use the requested portfolio venv:
 
 ```powershell
-py -3.14 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-genvm-lint lint contracts/license_bundle_clearinghouse.py
-genvm-lint validate contracts/license_bundle_clearinghouse.py
-genvm-lint schema contracts/license_bundle_clearinghouse.py --output contracts/abi.json
-python -m pytest
+& '..\.venv\Scripts\genvm-lint.exe' check contracts/license_bundle_clearinghouse.py --json
+& '..\.venv\Scripts\python.exe' -m pytest
 ```
 
-requirements.txt is the direct-test stack. For StudioNet client calls, use a separate environment with requirements-runtime.txt, which pins genlayer-py==0.18.0. genlayer-test==0.30.0rc2 requires genlayer-py>=0.19.0rc2, so the test and runtime pins cannot be installed together by the standard resolver.
-
-Direct-mode tests mock model responses. They do not establish live consensus, network finality, or remote runner availability.
+Lint passed and all 13 tests passed. Direct tests mock model responses and do not prove live consensus. `studionet_release.py` documents the completed live procedure and refuses to overwrite an existing manifest; do not rerun it to create duplicate evidence. The historical `requirements-runtime.txt` `.18.0` pin remains an alternative client; this release uses the requested venv and scoped adapter.
 
 ## Lifecycle
 
@@ -54,3 +51,7 @@ Validators must interpret published license restrictions together with the reque
 The pinned runner reads the `method` calldata key, while the portfolio venv client (`genlayer-py==0.19.0rc2`) emits the empty-string key; use the scoped adapter in `studionet_compat.py` for this runner on StudioNet. The regression executes the pinned runner resolver with both envelopes, then dispatches `get_accounting` and `register_license`. The contract source and runner are unchanged.
 
 Licensor consent covers the commercial deal, while GenLayer validators judge whether the licence terms actually permit the requested use and whether the selected terms conflict.
+
+## Release budget accounting
+
+The demo checks `deposited = requester available + reserved + paid` after every step, with no negative values. Final partition: `300 = 250 + 0 + 50`. Licensor balances were 30 and 20. The contract's general ledger instead conserves `minted = all spendable balances + reserved`; licensor payments are credits within that ledger, and `fees_paid_units` is cumulative turnover. Adding cumulative paid to all spendable balances would double-count payment. The demo does not reuse licensor credits, so its requester-budget partition is valid; it does not prove that deposited equals available plus reserved plus cumulative turnover under arbitrary recycling.

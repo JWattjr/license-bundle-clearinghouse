@@ -24,7 +24,7 @@ RPC_LOG = REPO / "deployments" / f"studionet-release-{DATE}-rpc.jsonl"
 COMMAND_LOG = REPO / "deployments" / f"studionet-release-{DATE}-commands.jsonl"
 ENDPOINT = "https://studio.genlayer.com/api"
 SOURCE = "contracts/license_bundle_clearinghouse.py"
-EXPLORER = "https://explorer-studio.genlayer.com/transactions/"
+EXPLORER = "https://explorer-studio.genlayer.com/tx/"
 record = {"release_date": DATE, "timezone": "Africa/Lagos", "status": "IN_PROGRESS",
           "network": {"name": "StudioNet", "chain_id": 61999, "rpc": ENDPOINT, "portal_used": False},
           "runner": RUNNER, "runtime_executable": sys.executable,

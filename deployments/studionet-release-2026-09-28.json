@@ -255,5 +255,8 @@
       }
     ],
     "distinct_reusable_contribution": "A permission over a selected bundle of versioned licenses is issued only after every distinct licensor approves the exact use digest, then deterministic fixed fees are credited per work."
-  }
+  },
+  "status": "FAILED_DEPLOYMENT_NOT_EVIDENCE",
+  "release_evidence": false,
+  "classification_note": "Deployment finalized, but later calls through the incompatible client selector failed. Diagnostic recovery does not make this address release evidence."
 }

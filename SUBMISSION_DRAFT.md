@@ -1,23 +1,26 @@
-# Submission draft — ready with caveats
+# Submission draft
 
-**Status: READY WITH CAVEATS.** The final StudioNet release is deployed and the planned live demo completed. The repository remains private and has not been submitted to the Portal.
+Status: live evidence verified; repository PRIVATE; Portal not used. Make the repo public before submitting.
 
-## Project
+## Portal note (804 characters)
 
-`LicenseBundleClearinghouse` composes permission from two to five versioned licenses for one requested use. It reserves fixed synthetic demo fees, requires each distinct licensor to approve the exact request digest, then records an expiring permission and credits each licensor.
+License Bundle Clearinghouse judges each licence against a precisely requested use and checks the selected terms for conflicts. A compatible bundle reserves fixed fees, requires every licensor to consent to the exact version-bound request digest, then issues an expiring permission and credits the fees. Consent covers the commercial deal; GenLayer validators determine whether the terms actually permit the use and whether they conflict. The StudioNet demo issued a CC-BY-style commercial bundle and blocked a CC-BY-NC-style commercial use, missing consent, and stale-version approval. Source matches the pushed Git blob byte-for-byte. Three withheld siblings share the judgment/consent/funding mechanism and are not submitted. Synthetic payment units; no legal advice, real payment, or ownership proof.
 
-## Live evidence
+## Evidence
 
-The release deployment at `0x52B06c3284CE66Bb5085790dc043AfC6B232963c` came from source commit `e9bc336c1eaff364683431a494c8f13a4528c147`. Deployment transaction `0xeaaa99ceebafef2085971b6d6e6ab6176e5107ebd19eb0c870682785c0ced1da` finalized with leader SUCCESS, and the deployed source Git blob matched the committed source.
+Release `0x48E3539Ef83ed5459B13bB6D3778b003CBfd3a32`, source commit `d3d01f1c94dacc45cbdd607cdd2be28ecd6563c4`; exact deployed Git-blob byte match.
 
-The planned demo recorded nine finalized transactions: seven leader SUCCESS and two labeled expected rollbacks. A compatible two-license bundle issued only after both licensors consented and credited 30 and 20 synthetic units. The unconsented request had no permission; the conflicting commercial request was classified `INCOMPATIBLE`, reserved no units, and could not receive approval. Final accounting was 100 minted, 100 available, 0 reserved, 50 fees paid, conserved. All six public view methods were read back.
+- [Compatible issuance: both licensors consented, 30/20 units paid](https://explorer-studio.genlayer.com/tx/0x55600cc1881e1c7e00f7b997445af3181438ff321052ab884164e198375e9005) — FINALIZED, leader SUCCESS; request `compatible` is ISSUED with active permission.
+- [Expected failure: noncommercial term against commercial use](https://explorer-studio.genlayer.com/tx/0x9af35ba2dadcb02866d26b8559b3986fde15b97b3b4c333653b9f2d91af6ab77) — FINALIZED, leader SUCCESS; stored DENIED_INCOMPATIBLE, NC licence NOT_PERMITTED, conflict pair nc-photo/water-data, zero reservation, no permission.
+- [Expected failure: one licensor consent missing](https://explorer-studio.genlayer.com/tx/0x751b0d7af0f7a275065e7d9db2250dd2f8ded7cbc47de2dd813ea27881f04cf1) — FINALIZED, leader SUCCESS; stored AWAITING_CONSENT with only Alice, and `get_permission` failed. This is a successful partial-consent transaction demonstrating blocked issuance, not a reverted write.
+- [Expected failure: approval after terms version update](https://explorer-studio.genlayer.com/tx/0x56c9febfcdedbbd668579df3eb7a4b5f0493af3ea245b39bf9446d91f3a01c3c) — FINALIZED, leader ERROR, rollback containing [STALE]; no approval/permission, then reservation refunded.
 
-One earlier helper attempt on the release address submitted a separate `artwork` registration before a harness metadata error prevented the transaction hash from being saved. A later latest-final view confirms that license exists. It is explicitly recorded as an untracked, non-evidence side effect; the release demo used fresh IDs and a separate set of signers. The first deployment at `0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472` remains marked failed and is not evidence.
+All 16 transactions including deployment finalized; 15 leader SUCCESS, 1 expected stale-version rollback. The incompatible and missing-consent failures are successful state transitions that deny permission; only stale approval is a reverted write. Full state readbacks and receipts: [release manifest](deployments/studionet-release-2026-10-12.json).
 
-The run used `genlayer-py==0.18.0` with the pinned runner. The direct suite passed 11 tests in ROOT `.venv` using the separate test stack. `genlayer-test==0.30.0rc2` requires `genlayer-py>=0.19.0rc2`, so those test dependencies cannot be installed together with the `.18.0` StudioNet runtime pin.
+Final demo budget: 300 deposited = 250 requester available + 0 reserved + 50 paid, nonnegative. Recipient balances remain separately spendable credits; this partition is verified without recycling them.
 
-## Scope and limits
+Does not prove: real payments or copyright ownership; units are synthetic and judgments are not legal advice.
 
-The terms and uses are synthetic participant-provided text. Demo units are internal ledger entries, not real funds, custody, tokens, or external payments. The demonstration does not establish copyright ownership, legal authority, or enforceability. Compatibility is a model judgment, not legal advice.
+The original `0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472` deployment is failed and excluded. Three withheld siblings share the mechanism and are not submitted. No visibility change or Portal submission was performed.
 
-See [the final release manifest](deployments/studionet-release-2026-09-28-client-fix.json), [the original failed deployment record](deployments/studionet-release-2026-09-28.json), and [the client compatibility record](docs/CLIENT_COMPATIBILITY.md) for complete transaction receipts, readbacks, dependency constraints, and diagnosis.
+Explorer page access returned HTTP 403 to automated verification; transaction contents and finality were verified through StudioNet RPC and saved receipts.
