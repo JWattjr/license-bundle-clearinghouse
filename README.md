@@ -48,3 +48,9 @@ Demo units are internal ledger entries, not real funds. Registration does not pr
 ## Why GenLayer
 
 Validators must interpret published license restrictions together with the requested use and the other selected terms; licensor approvals authorize the exact request but do not independently establish cross-license compatibility, which deterministic code cannot infer from natural language.
+
+## Venv dispatch fix (2026-10-12)
+
+The pinned runner reads the `method` calldata key, while the portfolio venv client (`genlayer-py==0.19.0rc2`) emits the empty-string key; use the scoped adapter in `studionet_compat.py` for this runner on StudioNet. The regression executes the pinned runner resolver with both envelopes, then dispatches `get_accounting` and `register_license`. The contract source and runner are unchanged.
+
+Licensor consent covers the commercial deal, while GenLayer validators judge whether the licence terms actually permit the requested use and whether the selected terms conflict.
