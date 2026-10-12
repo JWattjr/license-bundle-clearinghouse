@@ -98982,5 +98982,9 @@
         ]
       ]
     }
-  }
+  },
+  "release_status": "HISTORICAL_SUPERSEDED",
+  "current_release_evidence": false,
+  "superseded_by": "studionet-release-2026-10-12-spdx.json",
+  "historical_reason": "Participant-typed terms; not evidence of fetched SPDX licence text."
 }

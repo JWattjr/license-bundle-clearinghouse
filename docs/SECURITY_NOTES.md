@@ -1,22 +1,15 @@
 # Security notes
 
-## Licenses and approvals
+Only registered licensors may update a work's URL/fee. Every update increments the version; history is bounded and immutable. Pending approvals check current versions and the exact request digest. All distinct licensors must consent before issuance; the model cannot set fees, choose participants, override consent or spend funds.
 
-- Any participant may register a work ID, but the registering address becomes its licensor. Registration does not prove authorship, ownership, or legal authority.
-- Only the registered licensor can advance that work's terms and fee. The version is monotonic and each work has at most 8 stored versions. Old versions remain queryable.
-- A request selects 2–5 unique works and freezes the use, version, licensor, fixed fee, consent deadline, permission expiry, and compatibility digest. No model may change this request data.
-- Every distinct selected licensor must approve the exact request digest. Rejection is limited to a selected licensor; cancellation to the requester; expiry and stale-version invalidation are permissionless. Every terminal pending path releases the one reservation.
-- A selected version update stales an unissued request. Licensors cannot approve it afterward. The issued permission stores its original version snapshots and expiry; a later update cannot silently change them.
+Every selected licence URL is fetched in the leader and independently in each validator. Complete strict UTF-8 bodies must be HTTP 200, nonempty and at most 20,000 raw bytes. Evidence metadata and all normalized findings/conflicts are exactly compared. Fetch failures are recorded UNAVAILABLE, causing a fail-closed DENIED_UNVERIFIABLE request without reservation. Model errors/malformed results disagree. Text is untrusted data, including purported instructions to validators.
 
-## Compatibility judgment
+URL validation rejects literal IPs, private/local/special-use DNS suffixes, credentials, whitespace/control characters, backslashes, fragments and non-443 ports. It is structural validation; no claim of DNS rebinding prevention or redirect destination enforcement is made. Tag-pinned SPDX sources and stored raw-body digests support reproducible evidence; the digest binds bytes at assessment time, not perpetual URL content.
 
-- GenLayer evaluates the proposed use against every registered terms snapshot and identifies conflicts among the selected licenses. The response must preserve exact work order and versions, use one of the bounded findings, and name conflict pairs using selected work IDs only.
-- Validators independently rerun the judgment against the same on-chain snapshot and compare normalized results. Restrictions, conflicts, uncertainty, malformed fields, and disagreement prevent consent and payment reservation.
-- Work names, user use descriptions, and licensor terms are untrusted prompt text. The model does not set payment amounts, choose participants, or authorize missing consent.
+Compatible requests reserve exact fixed fees only after sufficient funding. Only final consent pays once. Rejection, cancellation, expiry and stale invalidation refund the whole reservation. The general ledger conserves all spendable balances plus reservations against minted units; cumulative payments are not a separate removed balance.
 
-## Accounting and limits
+Bounds: 32 works, 32 requests, 64 accounts, eight versions per work, two to three works per request, 20,000 raw bytes per licence and 180 days maximum expiry.
 
-- A compatible request reserves the exact sum of frozen per-work fees only after the requester has sufficient demo balance. Every approval credits the named licensors' balances by those exact fees once.
-- Refund, rejection, expiry, or stale invalidation returns the full reserved amount to the requester. Aggregate accounting checks available balances plus pending reservations against minted demo units.
-- Work registry is capped at 32, requests at 32, participant accounts at 64, versions per work at 8, and bundle size at 5. Permission duration is capped at 180 days.
-- Demo units do not represent custody of real assets. Terms strings are not legal verification. Direct tests use mocked model responses; live validators and target-chain runner availability remain unverified.
+Synthetic payment units; no legal advice. This does not prove copyright ownership, legal enforceability, real-money payment, arbitrary payment recycling, ecosystem-wide originality, perpetual URL immutability, or DNS/redirect destination enforcement. URL validation is structural public-HTTPS validation; it rejects literal IPs, private/local hostnames, credentials, ambiguous authority and non-443 ports.
+
+Lint/direct tests and the requested StudioNet demo passed; live unavailable-evidence and forged-leader attacks remain untested. See [test matrix](TEST_MATRIX.md) and [manifest](../deployments/studionet-release-2026-10-12-spdx.json).

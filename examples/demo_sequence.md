@@ -1,19 +1,10 @@
-# Complete demo sequence
+# Fetched-SPDX demo sequence
 
-Run the executable direct-mode scenario:
+1. Alice and Bob register different photographs with the public, tag-pinned [CC-BY-4.0 URL](https://raw.githubusercontent.com/spdx/license-list-data/v3.25.0/text/CC-BY-4.0.txt) and fixed fees of 30 and 20 units. Alice also registers a [CC-BY-NC-4.0 photograph](https://raw.githubusercontent.com/spdx/license-list-data/v3.25.0/text/CC-BY-NC-4.0.txt). No participant-typed licence text is accepted.
+2. A requester deposits 300 synthetic units and requests both BY works for a paid advertising campaign with attribution, licence links, modification notices and no extra restrictions.
+3. Validators independently fetch the complete bodies and compare availability, byte lengths, SHA-256 digests and judgments. A compatible request reserves 50 units and binds this evidence into the consent digest.
+4. Alice's approval leaves the request awaiting Bob. Bob's approval issues the expiring permission and credits 30/20 units.
+5. Commercial use of the NC work is NOT_PERMITTED and does not reserve funds or issue permission. Another BY request with only Alice's consent does not issue permission; cancellation refunds it.
+6. A new BY request is assessed at version 1. Alice updates its work URL to the NC URL, producing version 2. Approval of the old request rolls back as stale; invalidation refunds it. The earlier issued permission retains BY version 1 and its evidence digest.
 
-```powershell
-python -m pytest tests/test_bundle.py::test_compatible_bundle_requires_every_licensor_and_distributes_fixed_fees
-```
-
-1. Alice registers `artwork` with a 30-unit fee; Bob registers `dataset` with a 20-unit fee. Each registration stores terms version 1.
-2. The requester deposits 100 synthetic demo units and requests both works for one noncommercial, attributed clinic-report use. GenLayer assesses the exact two-term bundle as compatible.
-3. The contract reserves 50 units and computes a request digest that binds the use, selected version 1 terms, fees, consent deadline, and permission expiry.
-4. Alice approves the digest. No permission is issued while Bob's consent is still missing. Bob approves, which issues the permission and credits 30 units to Alice and 20 to Bob.
-5. Alice advances her current terms to version 2 with a new fee. The issued permission still reports the original version 1 terms and fee; version 2 only applies to future requests.
-
-The test uses mock model output and demo units. It does not verify copyright ownership, legal enforceability, or real payment.
-
-## Live release status
-
-The sequence above is a direct-mode scenario with mocked model output and synthetic demo units. On 2026-09-28 the StudioNet deployment succeeded and matched the committed source, but the first `register_license` transaction finalized with a contract error before this sequence could run. No live judgment, permission, or payout is claimed; see the [release record](../deployments/studionet-release-2026-09-28.json).
+Every step was read back at latest-final state. Final requester budget: `300 = 250 + 0 + 50`. See [manifest](../deployments/studionet-release-2026-10-12-spdx.json). Tests use mocks; live receipts are separate evidence. Units are synthetic; no legal advice.

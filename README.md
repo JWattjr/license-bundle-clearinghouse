@@ -1,57 +1,55 @@
 # License Bundle Clearinghouse
 
-`LicenseBundleClearinghouse` composes permission from two to five registered licenses for one precisely scoped use. Each named licensor registers a versioned terms record and fixed fee. A requester deposits internal demo units, proposes a use with consent and permission expiry dates, and receives a compatibility assessment against the exact selected versions.
-
-Incompatible or uncertain requests are recorded without reserving funds. A compatible request reserves the sum of its fixed fees. Every distinct licensor must approve the same request digest, which includes the requested use and each selected terms version. Once all licensors consent, the contract issues a permission snapshot and credits each fixed fee to its licensor. A later terms update makes a pending request stale; it does not rewrite an already issued permission.
-
-## Toolchain and verified release
-
-The runner remains `py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6`. The portfolio venv uses `genlayer-py==0.19.0rc2`; its empty-string method key is incompatible with this runner's `method` key. `studionet_compat.py` changes only that selector inside a context restricted to StudioNet, this runner, and this client version. The regression executes the actual pinned runner resolver and reproduces the old fallback error before verifying corrected view/write dispatch. See [the diagnosis](docs/CLIENT_COMPATIBILITY.md).
-
-The 2026-10-12 release is `0x48E3539Ef83ed5459B13bB6D3778b003CBfd3a32`, deployed from pushed commit `d3d01f1c94dacc45cbdd607cdd2be28ecd6563c4`. Deployment and all 15 demo writes reached FINALIZED; 15 executions were leader SUCCESS and 1 was the labeled expected stale-version rollback. ACCEPTED observations and FINALIZED status are recorded separately from execution results. The deployed source equals the Git blob byte-for-byte. The compatible commercial CC-BY-style bundle issued after both licensors approved and credited fixed fees of 30 and 20. Commercial use of the CC-BY-NC-style work was denied with a NOT_PERMITTED finding and a recorded conflict pair against the other selected work, one missing consent prevented permission, and consent after a version update rolled back as stale. Every step has a latest-final read-back; pending missing/stale requests were refunded after evidence was captured.
-
-See [the current release manifest](deployments/studionet-release-2026-10-12.json) and [the evidence list and Portal draft](SUBMISSION_DRAFT.md). The original `0x907c4540Bb4f59aBAA5b91c9Fd8000bb2Ba87472` deployment remains failed and is not evidence; same-address diagnostic reads are excluded. The earlier 2026-09-28 release remains historical evidence. The repo is PRIVATE, and nothing has been submitted to the Portal.
-
-From this repository, use the requested portfolio venv:
-
-```powershell
-& '..\.venv\Scripts\genvm-lint.exe' check contracts/license_bundle_clearinghouse.py --json
-& '..\.venv\Scripts\python.exe' -m pytest
-```
-
-Lint passed and all 13 tests passed. Direct tests mock model responses and do not prove live consensus. `studionet_release.py` documents the completed live procedure and refuses to overwrite an existing manifest; do not rerun it to create duplicate evidence. The historical `requirements-runtime.txt` `.18.0` pin remains an alternative client; this release uses the requested venv and scoped adapter.
-
-## Lifecycle
-
-1. A licensor registers a unique work ID, work name, terms text, and fixed positive fee. Terms versions are immutable history entries; only the licensor may advance the current version and fee.
-2. A requester mints demo balance into their ledger account and proposes two to five work IDs, an exact use description, a consent deadline, and permission expiry. The selected terms, owners, fees, scope, and dates are frozen into the compatibility snapshot.
-3. GenLayer evaluates whether the use fits each license and whether selected licenses conflict with one another. Validators independently assess the same on-chain snapshot. A conflict, restriction, uncertainty, malformed response, or disagreement cannot start consent or reserve funds.
-4. For a compatible bundle, the exact total fee moves into a request reservation. Each distinct licensor approves the exact request digest. A licensor may reject; the requester may cancel; anyone may expire after the consent deadline. These paths refund the reservation.
-5. If any selected license version changes before all approvals, approval fails as stale. Anyone may invalidate the pending request and return its funds. Once all licensors consent, the contract credits each work's frozen fee to its licensor and stores the exact issued permission snapshot.
-6. Issued permissions keep their original terms and scope through the frozen permission expiry. A subsequent terms change affects future requests and pending requests only; it does not silently modify or revoke earlier permission records.
-
-## API
-
-Writes are `deposit_demo_units`, `register_license`, `update_license_terms`, `request_bundle`, `approve_bundle_request`, `reject_bundle_request`, `cancel_bundle_request`, `expire_bundle_request`, and `invalidate_stale_request`. Views are `get_license`, `get_license_version`, `get_request`, `get_permission`, `get_balance`, and `get_accounting`. The generated ABI is [contracts/abi.json](contracts/abi.json).
-
-There are no constructor arguments; see [examples/constructor.json](examples/constructor.json). The full consent/payment example is [examples/demo_sequence.md](examples/demo_sequence.md).
-
-## Bounds and failure behavior
-
-The registry supports 32 works, 32 bundle requests, 64 participant accounts, at most 8 versions per work, and bundles of up to 5 works. Text, fee amounts, IDs, and permission duration are bounded. All fees are fixed by the selected license versions and distributed deterministically from one reserved amount. The accounting invariant is `available demo balances + pending reservations = total demo units minted`.
-
-Demo units are internal ledger entries, not real funds. Registration does not prove copyright ownership or legal authority. Compatibility is a model judgment over licensor-provided text, not legal advice or proof that a license is enforceable. See [mechanism differentiation](docs/MECHANISM_DIFFERENTIATION.md), [test matrix](docs/TEST_MATRIX.md), [security notes](docs/SECURITY_NOTES.md), and the [submission draft](SUBMISSION_DRAFT.md).
-
-## Why GenLayer
-
-Validators must interpret published license restrictions together with the requested use and the other selected terms; licensor approvals authorize the exact request but do not independently establish cross-license compatibility, which deterministic code cannot infer from natural language.
-
-## Venv dispatch fix (2026-10-12)
-
-The pinned runner reads the `method` calldata key, while the portfolio venv client (`genlayer-py==0.19.0rc2`) emits the empty-string key; use the scoped adapter in `studionet_compat.py` for this runner on StudioNet. The regression executes the pinned runner resolver with both envelopes, then dispatches `get_accounting` and `register_license`. The contract source and runner are unchanged.
+`LicenseBundleClearinghouse` judges the real licence text fetched from public HTTPS evidence for a precisely requested use. Participants register a URL and fixed fee, not licence text. A bundle selects two or three works. A compatible assessment reserves the total fixed fee and requires every distinct licensor's consent before issuing an expiring permission and crediting each licensor.
 
 Licensor consent covers the commercial deal, while GenLayer validators judge whether the licence terms actually permit the requested use and whether the selected terms conflict.
 
-## Release budget accounting
+## Verified fetched-SPDX release
 
-The demo checks `deposited = requester available + reserved + paid` after every step, with no negative values. Final partition: `300 = 250 + 0 + 50`. Licensor balances were 30 and 20. The contract's general ledger instead conserves `minted = all spendable balances + reserved`; licensor payments are credits within that ledger, and `fees_paid_units` is cumulative turnover. Adding cumulative paid to all spendable balances would double-count payment. The demo does not reuse licensor credits, so its requester-budget partition is valid; it does not prove that deposited equals available plus reserved plus cumulative turnover under arbitrary recycling.
+The fetched-SPDX release is [0x3C2C00d43de74399cEf2c74051675050C91ad366](https://explorer-studio.genlayer.com/address/0x3C2C00d43de74399cEf2c74051675050C91ad366), deployed from local commit `26d8a0f16de14543c602d80c8253139b49bf6929` before any push. The deployed source equals that commit's Git blob byte-for-byte. All 16 transactions finalized: 15 leader SUCCESS executions and one expected stale-approval ERROR/rollback. ACCEPTED observations, FINALIZED status, and execution outcomes are separate manifest fields. Every demo step has a latest-final read-back. All four compatibility assessments stored hashes equal to the independently curl-verified SPDX bodies: CC-BY-4.0 17,023 bytes and CC-BY-NC-4.0 17,649 bytes.
+
+The commercial use is: Use both selected photographs in a paid advertising campaign for a for-profit business, including reproducing, adapting and commercially distributing them. Credit each creator, link to each licence, and mark all modifications. Claim no endorsement and impose no DRM, exclusivity or additional restrictions on recipients exercising the licensed rights.
+
+- [Compatible issuance](https://explorer-studio.genlayer.com/tx/0x5ec8ac483b483a087323d0c2b5383239cbbb12bc1f6e3749a5f54b1d04f7f002) — FINALIZED; leader SUCCESS. ISSUED after both approvals; fixed credits 30/20.
+- [NC commercial-use block](https://explorer-studio.genlayer.com/tx/0x73df5dcd4a810c6f96b17a25a85e02e75f2bb4e2db72aa89b413fe7cd298b41d) — FINALIZED; leader SUCCESS. NC work NOT_PERMITTED, DENIED_INCOMPATIBLE, no reservation or permission.
+- [Missing-consent block](https://explorer-studio.genlayer.com/tx/0x0778a52cd76a643a89edfa4eae42d704e91d0dd14be004653feecb1918aa0afa) — FINALIZED; leader SUCCESS. One approval, AWAITING_CONSENT, no permission; later cancelled and refunded.
+- [Stale-version approval block](https://explorer-studio.genlayer.com/tx/0xe3caccd4fc9cb56791160128a04efc38da93237ae0e041c98fe086c07dcb2b99) — FINALIZED; leader ERROR with [STALE] rollback. No approval or permission; later invalidated and refunded.
+
+See [release manifest](deployments/studionet-release-2026-10-12-spdx.json), [Portal note and complete evidence list](SUBMISSION_DRAFT.md), [test matrix](docs/TEST_MATRIX.md) and [distinctiveness review](docs/DISTINCTIVENESS.md). The repository is PUBLIC and its existing submission is pending review; this release did not touch the Portal or visibility.
+
+The previous `studionet-release-2026-10-12.json` records historical participant-typed terms and is superseded for fetched-evidence claims. The original `0x907c...7472` deployment remains failed, not evidence.
+
+## Evidence and consent binding
+
+Each leader and validator fetches every selected URL using `gl.nondet.web.get`. A licence is AVAILABLE only for HTTP 200 with a nonempty complete strict UTF-8 body of at most 20,000 raw bytes. Nothing is truncated or whitespace-normalized before hashing. Invalid UTF-8, HTTP failure, missing/empty body, fetch failure or oversize body yields UNAVAILABLE. Any unavailable licence makes the entire request DENIED_UNVERIFIABLE with no reservation or permission, without asking the model to invent missing terms.
+
+The stored compatibility record contains each work ID, version, URL, availability, raw-body SHA-256 digest and raw byte length. Validators independently re-fetch and judge, then exactly compare those fields, every permission finding, conflict pair and frozen snapshot digest. A malformed result or validator error cannot agree merely because the leader also failed. The request digest that licensors approve includes the complete compatibility record, so consent is bound to the fetched licence bytes as assessed. Fetching is done at assessment time; approval does not assert that a mutable URL still serves the same bytes later. Use pinned evidence URLs.
+
+Licence text, URLs, work names and requested use are untrusted prompt data. The model judges only use permission and conflicts; deterministic code owns versions, fees, funding, parties, consent, dates and refunds. NOT_PERMITTED or conflicting terms produce DENIED_INCOMPATIBLE; uncertainty produces DENIED_UNCERTAIN. Neither reserves funds.
+
+## API and lifecycle
+
+`register_license(work_id, work_name, terms_url, fee_units)` registers version 1. `update_license_terms(work_id, expected_version, terms_url, fee_units)` requires the licensor and matching version, then advances the version and immutable history entry. A URL change therefore stales every pending request selecting the previous version; previously issued permissions keep their original version, evidence digests, scope and expiry.
+
+The requester deposits synthetic demo units and calls `request_bundle(request_id, work_ids_json, requested_use, consent_deadline_iso, permission_expiry_iso)`. After compatibility and reservation, each required licensor calls `approve_bundle_request(request_id, expected_request_digest)`. All approvals issue and pay once. Rejection, requester cancellation, deadline expiry or stale invalidation refunds the one reservation.
+
+Views are `get_license`, `get_license_version`, `get_request`, `get_permission`, `get_balance` and `get_accounting`. Other writes are `deposit_demo_units`, `reject_bundle_request`, `cancel_bundle_request`, `expire_bundle_request` and `invalidate_stale_request`. See [ABI](contracts/abi.json) and [demo sequence](examples/demo_sequence.md). No constructor arguments are required.
+
+Bounds: 32 works, 32 requests, 64 accounts, eight versions per work, three works per bundle, 20,000 raw bytes per fetched licence and 180 days maximum permission duration.
+
+## Runner, dispatch and checks
+
+Runner remains `py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6`. The portfolio venv client `genlayer-py==0.19.0rc2` emits an empty-string method selector, while this runner expects `method`; the scoped `studionet_compat.pinned_runner_calldata` adapter fixes dispatch on StudioNet only. See [dispatch diagnosis](docs/CLIENT_COMPATIBILITY.md). The runner resolver regression reproduces the fallback error and verifies adapted view/write dispatch.
+
+```powershell
+& '..\.venv\Scripts\genvm-lint.exe' check contracts/license_bundle_clearinghouse.py --json
+& '..\.venv\Scripts\python.exe' -m pytest -q
+```
+
+Lint passed (three AST checks and SDK validation), and 33 pytest cases passed. Direct tests mock fetches and model output; the manifest supplies separate live evidence. `studionet_spdx_release.py` is the completed one-shot live procedure and refuses to overwrite its manifest. All commits were local before deployment; one final push follows the three gate checks. `origin/main` is checked for the identical deployed contract blob, while the later evidence commit may be its tip.
+
+## Accounting and limits of evidence
+
+The funded requester budget remained nonnegative and satisfied `deposited = requester available + reserved + paid` after every step; final `300 = 250 + 0 + 50`. Licensor credits were 30 and 20 and were not reused. The general ledger separately conserves `minted = all spendable balances + reserved`; cumulative fees paid are turnover, so adding them to all spendable balances would double-count credits.
+
+Synthetic payment units; no legal advice. This does not prove copyright ownership, legal enforceability, real-money payment, arbitrary payment recycling, ecosystem-wide originality, perpetual URL immutability, or DNS/redirect destination enforcement. URL validation is structural public-HTTPS validation; it rejects literal IPs, private/local hostnames, credentials, ambiguous authority and non-443 ports.
