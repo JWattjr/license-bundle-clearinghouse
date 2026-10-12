@@ -1,4 +1,7 @@
 import json
+import hashlib
+import re
+from pathlib import Path
 
 import pytest
 
@@ -8,6 +11,15 @@ NOW = "2030-01-01T12:00:00Z"
 CONSENT_DEADLINE = "2030-01-05T00:00:00Z"
 PERMISSION_EXPIRY = "2030-01-30T00:00:00Z"
 WORK_IDS = ["artwork", "dataset"]
+BY_URL = "https://raw.githubusercontent.com/spdx/license-list-data/v3.25.0/text/CC-BY-4.0.txt"
+NC_URL = "https://raw.githubusercontent.com/spdx/license-list-data/v3.25.0/text/CC-BY-NC-4.0.txt"
+BY_BODY = (Path(__file__).parent / "fixtures/CC-BY-4.0.txt").read_bytes()
+NC_BODY = (Path(__file__).parent / "fixtures/CC-BY-NC-4.0.txt").read_bytes()
+
+
+def mock_sources(direct_vm, body=BY_BODY, status=200):
+    direct_vm.mock_web(re.escape(BY_URL), {"response": {"status": status, "headers": {}, "body": body}})
+    direct_vm.mock_web(re.escape(NC_URL), {"response": {"status": 200, "headers": {}, "body": NC_BODY}})
 
 
 def llm(value) -> str:
@@ -24,11 +36,11 @@ def deploy(direct_vm, direct_deploy, direct_owner):
 def register_two(contract, direct_vm, direct_alice, direct_bob):
     with direct_vm.prank(direct_alice):
         contract.register_license(
-            "artwork", "Water station design", "May reproduce and adapt the design in noncommercial public health installations with attribution.", 30,
+            "artwork", "Water station design", BY_URL, 30,
         )
     with direct_vm.prank(direct_bob):
         contract.register_license(
-            "dataset", "Regional conductivity dataset", "May redistribute measurements when derived public reports preserve attribution and disclose modifications.", 20,
+            "dataset", "Regional conductivity dataset", BY_URL, 20,
         )
 
 
@@ -49,12 +61,13 @@ def compatible_result(findings=None, conflict_pairs=None):
 def request_bundle(contract, direct_vm, requester, request_id="clinic-report", result=None):
     if result is None:
         result = compatible_result()
+    mock_sources(direct_vm)
     direct_vm.mock_llm(r"LICENSE BUNDLE COMPATIBILITY", llm(result))
     with direct_vm.prank(requester):
         return contract.request_bundle(
             request_id,
             json.dumps(WORK_IDS),
-            "Create and distribute a noncommercial public clinic report that includes both works with attribution and permits modifications.",
+            "Create and distribute a paid advertising campaign using both works with attribution, licence links, modification notices and no additional restrictions.",
             CONSENT_DEADLINE,
             PERMISSION_EXPIRY,
         )
@@ -106,12 +119,12 @@ def test_compatible_bundle_requires_every_licensor_and_distributes_fixed_fees(
     with direct_vm.prank(direct_alice):
         updated = contract.update_license_terms(
             "artwork", 1,
-            "May reproduce only in noncommercial public health installations; commercial advertising is excluded.", 35,
+            NC_URL, 35,
         )
     assert updated["version"] == 2
     permission_after_update = contract.get_permission("clinic-report")
     assert permission_after_update["licenses"][0]["version"] == 1
-    assert permission_after_update["licenses"][0]["terms_text"].startswith("May reproduce and adapt")
+    assert permission_after_update["licenses"][0]["terms_url"] == BY_URL
     assert contract.get_license("artwork")["version"] == 2
     assert contract.get_license_version("artwork", 1)["fee_units"] == 30
 
@@ -214,7 +227,7 @@ def test_version_change_stales_pending_request_and_refunds_once_without_changing
     with direct_vm.prank(direct_alice):
         contract.update_license_terms(
             "artwork", 1,
-            "May be used only in noncommercial public health reports with attribution.", 35,
+            NC_URL, 35,
         )
     with direct_vm.prank(direct_bob):
         with direct_vm.expect_revert("terms changed"):
@@ -234,6 +247,7 @@ def test_malformed_model_output_reverts_then_validator_rejects_disagreement(
     fund_requester(contract, direct_vm, direct_owner)
     malformed = compatible_result()
     malformed["leader_comment"] = "untrusted extra field"
+    mock_sources(direct_vm)
     direct_vm.mock_llm(r"LICENSE BUNDLE COMPATIBILITY", llm(malformed))
     with direct_vm.prank(direct_owner):
         with direct_vm.expect_revert("unknown or missing fields"):
@@ -277,14 +291,14 @@ def test_license_version_history_has_a_fixed_cap(
         for version in range(1, 8):
             updated = contract.update_license_terms(
                 "artwork", version,
-                f"Version {version + 1} terms for noncommercial public health reproduction with attribution.",
+                NC_URL if version % 2 else BY_URL,
                 30 + version,
             )
         assert updated["version"] == 8
         with direct_vm.expect_revert("version history is full"):
             contract.update_license_terms(
                 "artwork", 8,
-                "Version nine terms for noncommercial public health reproduction with attribution.", 40,
+                BY_URL, 40,
             )
     assert contract.get_license_version("artwork", 1)["version"] == 1
     assert contract.get_license("artwork")["version"] == 8

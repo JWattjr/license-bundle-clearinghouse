@@ -5,8 +5,8 @@ SOURCE = Path(__file__).resolve().parents[1] / "contracts" / 'license_bundle_cle
 OWNER_NAMES = ['_assess_compatibility']
 CANDIDATE_NAMES = ['_compatibility_candidate']
 VECTOR_NAMES = ['_decision_vector']
-REQUIRED_COMPARE_KEYS = frozenset(['snapshot_digest', 'work_id', 'version', 'finding', 'conflict_pairs'])
-REQUIRED_SCHEMAS = tuple(frozenset(row) for row in [{'snapshot_digest', 'license_decisions', 'conflict_pairs'}, {'work_id', 'version', 'finding'}])
+REQUIRED_COMPARE_KEYS = frozenset(['snapshot_digest', 'work_id', 'version', 'finding', 'conflict_pairs', 'terms_url', 'availability', 'body_digest', 'body_bytes'])
+REQUIRED_SCHEMAS = tuple(frozenset(row) for row in [{'snapshot_digest', 'evidence', 'license_decisions', 'conflict_pairs'}, {'work_id', 'version', 'terms_url', 'availability', 'body_digest', 'body_bytes'}, {'work_id', 'version', 'finding'}])
 BOUND_FUNCTION = '_compatibility_candidate'
 
 

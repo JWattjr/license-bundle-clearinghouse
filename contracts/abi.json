@@ -144,7 +144,7 @@
           "string"
         ],
         [
-          "terms_text",
+          "terms_url",
           "string"
         ],
         [
@@ -208,7 +208,7 @@
           "int"
         ],
         [
-          "terms_text",
+          "terms_url",
           "string"
         ],
         [

@@ -1,0 +1,22 @@
+[
+  {
+    "license": "CC-BY-4.0",
+    "url": "https://raw.githubusercontent.com/spdx/license-list-data/v3.25.0/text/CC-BY-4.0.txt",
+    "http_status": 200,
+    "raw_bytes": 17023,
+    "body_digest": "sha256:d557539df68e771cc1eedcc91d13f70fca930e508d11eedcafa4b15db49e3744",
+    "verification": "curl.exe --fail --silent --show-error --location --output <fixture> --write-out HTTP/status and size_download",
+    "verified_date": "2026-10-12",
+    "complete_utf8": true
+  },
+  {
+    "license": "CC-BY-NC-4.0",
+    "url": "https://raw.githubusercontent.com/spdx/license-list-data/v3.25.0/text/CC-BY-NC-4.0.txt",
+    "http_status": 200,
+    "raw_bytes": 17649,
+    "body_digest": "sha256:cc97a2c4ff7723a1f25179dc7c18f676fa84191bbb36ea7d0061acaf3c102559",
+    "verification": "curl.exe --fail --silent --show-error --location --output <fixture> --write-out HTTP/status and size_download",
+    "verified_date": "2026-10-12",
+    "complete_utf8": true
+  }
+]

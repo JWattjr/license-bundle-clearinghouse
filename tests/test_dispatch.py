@@ -41,7 +41,7 @@ def test_legacy_runner_dispatches_view_and_registration(direct_vm, direct_deploy
     with pinned_runner_calldata(chain_id=61999, runner=RUNNER):
         context.cd = calldata.decode(calldata.encode(actions.make_calldata_object(method="get_accounting")))
         assert resolve(context)(contract._instance)["conserved"] is True
-        args = ["dispatch-work", "Attribution illustration", "CC-BY-4.0 style: share and adapt for any purpose with attribution and a license link.", 30]
+        args = ["dispatch-work", "Attribution illustration", "https://raw.githubusercontent.com/spdx/license-list-data/v3.25.0/text/CC-BY-4.0.txt", 30]
         context.cd = calldata.decode(calldata.encode(actions.make_calldata_object(method="register_license", args=args)))
         row = resolve(context)(contract._instance, *context.cd["args"])
         assert row["version"] == 1
